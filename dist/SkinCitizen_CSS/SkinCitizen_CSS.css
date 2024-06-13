@@ -337,13 +337,7 @@ header.mw-body-header {
   background-repeat: no-repeat;
   background-size: contain;
 }
-#contentSub .subpages,
-#contentSub .mw-history-subtitle,
-#contentSub .mw-contributions-user-tools,
-#contentSub .ext-discussiontools-init-pageframe-latestcomment,
-#contentSub .mw-abusefilter-navigation,
-#contentSub .mw-redirectedfrom,
-#contentSub #redirectsub {
+#contentSub {
   border-radius: 5px;
   background: rgba(240, 248, 255, 0.65);
   padding: 5px;
