@@ -54,14 +54,6 @@ const DEFAULT_SETTING: Setting = {
 
 const VARIANTS: string[] = ['zh-hans', 'zh-hant', 'zh-cn', 'zh-my', 'zh-sg', 'zh-hk', 'zh-mo', 'zh-tw'];
 
-const WG_CANONICAL_SPECIAL_PAGE_NAME: string = mw.config.get('wgCanonicalSpecialPageName').toString();
-const WG_FORMATTED_NAMESPACES: Record<number, string> = mw.config.get('wgFormattedNamespaces');
-const WG_NAMESPACE_IDS: Record<string, number> = mw.config.get('wgNamespaceIds');
-const WG_NAMESPACE_NUMBER: number = mw.config.get('wgNamespaceNumber');
-const WG_SCRIPT: string = mw.config.get('wgScript');
-const WG_TITLE: string = mw.config.get('wgTitle');
-const WG_USER_LANGUAGE: string = mw.config.get('wgUserLanguage');
-
 export {
 	CLASS_NAME,
 	CLASS_NAME_CONTAINER,
@@ -86,11 +78,4 @@ export {
 	CLASS_NAME_LABEL_SELECTED,
 	DEFAULT_SETTING,
 	VARIANTS,
-	WG_CANONICAL_SPECIAL_PAGE_NAME,
-	WG_FORMATTED_NAMESPACES,
-	WG_NAMESPACE_IDS,
-	WG_NAMESPACE_NUMBER,
-	WG_SCRIPT,
-	WG_TITLE,
-	WG_USER_LANGUAGE,
 };

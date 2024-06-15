@@ -1,3 +1,5 @@
+import boldItalicA from './images/Toolbaricon_bolditalic_A.png';
+import chineseConversion from './images/Chinese_conversion.png';
 import {customizeToolbar} from 'ext.gadget.Edittools-customizeToolbar';
 
 customizeToolbar(function (this: JQuery): void {
@@ -28,7 +30,7 @@ customizeToolbar(function (this: JQuery): void {
 			bolditalic: {
 				label: '粗斜体',
 				type: 'button',
-				icon: 'https://youshou.wiki/images/b/be/Toolbaricon_bolditalic_A.png',
+				icon: boldItalicA as string,
 				action: {
 					type: 'encapsulate',
 					options: {
@@ -168,7 +170,7 @@ customizeToolbar(function (this: JQuery): void {
 			'hans-hant': {
 				label: '繁简转换',
 				type: 'button',
-				icon: 'https://youshou.wiki/images/thumb/6/6a/Chinese_conversion_black.svg/24px-Chinese_conversion_black.svg.png',
+				icon: chineseConversion as string,
 				action: {
 					type: 'encapsulate',
 					options: {

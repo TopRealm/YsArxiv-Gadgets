@@ -23,40 +23,37 @@ import {
 	CLASS_NAME_LABEL_SELECTED,
 	DEFAULT_SETTING,
 	VARIANTS,
-	WG_CANONICAL_SPECIAL_PAGE_NAME,
-	WG_FORMATTED_NAMESPACES,
-	WG_NAMESPACE_IDS,
-	WG_NAMESPACE_NUMBER,
-	WG_TITLE,
 } from './constant';
 import {DEFAULT_MESSAGES, setMessages} from './messages';
 import type {MessageKey, Setting} from './types';
-import {getBody, initMwApi} from 'ext.gadget.Util';
+import {getBody, uniqueArray} from 'ext.gadget.Util';
 import React from 'ext.gadget.React';
+import {api} from './api';
+
+const {wgCanonicalSpecialPageName, wgFormattedNamespaces, wgNamespaceIds, wgNamespaceNumber, wgTitle} = mw.config.get();
 
 /**
  * Changes category of multiple files
  */
 const catALot = (): void => {
-	/*! Cat-a-lot | CC-BY-SA-4.0 <https://qwbk.cc/H:CC-BY-SA-4.0> */
+	/*! Cat-a-lot | CC-BY-SA-4.0 <https://ysymh.cc/H:CC-BY-SA-4.0> */
 	class CAL {
 		public static isSearchMode = false;
 
 		private static readonly MESSAGES: Record<MessageKey, string> = DEFAULT_MESSAGES;
 		private static readonly DEFAULT_SETTING: Setting = DEFAULT_SETTING;
-		private static readonly VERSION: string = OPTIONS.version;
 
 		private static readonly API_TAG: string = OPTIONS.apiTag;
 		private static readonly TARGET_NAMESPACE: number = OPTIONS.targetNamespace;
 
-		private static readonly CURRENT_CATEGROY: string = WG_TITLE;
+		private static readonly CURRENT_CATEGROY: string = wgTitle;
 
-		private static readonly WG_FORMATTED_NAMESPACES: Record<number, string> = WG_FORMATTED_NAMESPACES;
-		private static readonly WG_NAMESPACE_IDS: Record<string, number> = WG_NAMESPACE_IDS;
+		private static readonly wgFormattedNamespaces: Record<number, string> = wgFormattedNamespaces;
+		private static readonly wgNamespaceIds: Record<string, number> = wgNamespaceIds;
 
 		private static isAutoCompleteInit = false;
 
-		private static api = initMwApi(`Cat-a-lot/${CAL.VERSION}`);
+		private static api = api;
 
 		private static alreadyThere: string[] = [];
 		private static connectionError: string[] = [];
@@ -69,13 +66,14 @@ const catALot = (): void => {
 
 		private static dialogHeight = 450;
 		private static editToken = '';
-		private static localCatName = WG_FORMATTED_NAMESPACES[CAL.TARGET_NAMESPACE] as string;
+		private static localCatName = wgFormattedNamespaces[CAL.TARGET_NAMESPACE] as string;
 
 		private static parentCats: string[] = [];
 		private static subCats: string[] = [];
 
 		private static settings: NonNullable<typeof window.CatALotPrefs> = {};
 		private static variantCache: Record<string, string[]> = {};
+		private static variantCache2: Record<string, Record<string, string>> = {};
 
 		private static $counter: JQuery = $();
 		private static $progressDialog: JQuery = $();
@@ -125,7 +123,7 @@ const catALot = (): void => {
 							{[CAL.msg('select'), ' ']}
 							<a
 								className={CLASS_NAME_CONTAINER_DATA_SELECTIONS_ALL}
-								onClick={() => {
+								onClick={(): void => {
 									this.toggleAll(true);
 								}}
 							>
@@ -134,7 +132,7 @@ const catALot = (): void => {
 							{' • '}
 							<a
 								className={CLASS_NAME_CONTAINER_DATA_SELECTIONS_NONE}
-								onClick={() => {
+								onClick={(): void => {
 									this.toggleAll(false);
 								}}
 							>
@@ -143,7 +141,7 @@ const catALot = (): void => {
 						</div>
 					</div>
 					<div className={CLASS_NAME_CONTAINER_HEAD}>
-						<a className={CLASS_NAME_CONTAINER_HEAD_LINK}>{'Cat-a-lot'}</a>
+						<a className={CLASS_NAME_CONTAINER_HEAD_LINK}>Cat-a-lot</a>
 					</div>
 				</div>
 			);
@@ -165,9 +163,9 @@ const catALot = (): void => {
 		public buildElements(): void {
 			const regexCat: RegExp = new RegExp(`^\\s*${CAL.localizedRegex(CAL.TARGET_NAMESPACE, 'Category')}:`, '');
 
-			this.$searchInput.on('input keyup', (event: JQuery.TriggeredEvent | JQuery.KeyUpEvent): void => {
-				const currentTarget = event.currentTarget as HTMLInputElement;
-				const oldVal: string = currentTarget.value;
+			this.$searchInput.on('input keyup', (event): void => {
+				const {currentTarget} = event;
+				const {value: oldVal} = currentTarget;
 				const newVal: string = oldVal.replace(regexCat, '');
 				if (newVal !== oldVal) {
 					currentTarget.value = newVal;
@@ -181,7 +179,7 @@ const catALot = (): void => {
 				CAL.isAutoCompleteInit = true;
 
 				this.$searchInput.autocomplete({
-					source: (request: {term: unknown}, response: (arg: JQuery<string>) => void): void => {
+					source: (request: {term: string}, response: (arg: JQuery<string>) => void): void => {
 						this.doAPICall(
 							{
 								action: 'opensearch',
@@ -192,9 +190,7 @@ const catALot = (): void => {
 							(result): void => {
 								if (result[1]) {
 									response(
-										$(result[1]).map((_index: number, item: string): string =>
-											item.replace(regexCat, '')
-										)
+										$(result[1]).map((_index, item: string): string => item.replace(regexCat, ''))
 									);
 								}
 							}
@@ -208,7 +204,7 @@ const catALot = (): void => {
 					appendTo: `.${CLASS_NAME_CONTAINER}`,
 				});
 			};
-			this.$link.on('click', (event: JQuery.ClickEvent): void => {
+			this.$link.on('click', (event): void => {
 				$(event.currentTarget).toggleClass(CLASS_NAME_CONTAINER_HEAD_LINK_ENABLED);
 				initAutocomplete();
 				this.run();
@@ -267,16 +263,16 @@ const catALot = (): void => {
 				return regexName.replace(/([$()*+.?\\^])/g, String.raw`\$1`).replace(wikiTextBlankRE, wikiTextBlank);
 			};
 			fallback = fallback.toLowerCase();
-			const canonical: string | undefined = CAL.WG_FORMATTED_NAMESPACES[namespaceNumber]?.toLowerCase();
+			const canonical: string | undefined = CAL.wgFormattedNamespaces[namespaceNumber]?.toLowerCase();
 			let regexString: string = createRegexStr(canonical);
 			if (fallback && canonical !== fallback) {
 				regexString += `|${createRegexStr(fallback)}`;
 			}
-			for (const catName of Object.keys(CAL.WG_NAMESPACE_IDS)) {
+			for (const catName of Object.keys(CAL.wgNamespaceIds)) {
 				if (
 					catName.toLowerCase() !== canonical &&
 					catName.toLowerCase() !== fallback &&
-					CAL.WG_NAMESPACE_IDS[catName] === namespaceNumber
+					CAL.wgNamespaceIds[catName] === namespaceNumber
 				) {
 					regexString += `|${createRegexStr(catName)}`;
 				}
@@ -299,6 +295,9 @@ const catALot = (): void => {
 			if (CAL.variantCache[category] !== undefined) {
 				return CAL.variantCache[category] as string[];
 			}
+			if (!CAL.variantCache2[category]) {
+				CAL.variantCache2[category] = {};
+			}
 			const results: string[] = [];
 			const params: ApiParseParams = {
 				action: 'parse',
@@ -308,15 +307,28 @@ const catALot = (): void => {
 				title: 'temp',
 			};
 			for (const variant of VARIANTS) {
-				const {parse} = await CAL.api.post({
-					...params,
-					variant,
-				});
-				const {text} = parse;
-				results[results.length] = $(text).eq(0).text().trim();
+				const result2 = Object.getOwnPropertyDescriptor(CAL.variantCache2[category], variant)?.value;
+				if (result2) {
+					results[results.length] = result2;
+					continue;
+				}
+				try {
+					const {parse} = await CAL.api.post({
+						...params,
+						variant,
+					} as typeof params);
+					const {text} = parse;
+					const result = $(text).eq(0).text().trim();
+					results[results.length] = result;
+					if (CAL.variantCache2[category]) {
+						Object.defineProperty(CAL.variantCache2[category], variant, {
+							value: result,
+						});
+					}
+				} catch {}
 			}
 			// De-duplicate
-			CAL.variantCache[category] = [...new Set(results)];
+			CAL.variantCache[category] = uniqueArray(results); // Replace `[...new Set()]` to avoid polyfilling core-js
 			return results;
 		}
 
@@ -351,11 +363,19 @@ const catALot = (): void => {
 		}
 
 		private doAPICall(
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			params: Record<string, any>,
+			_params:
+				| Omit<ApiEditPageParams, 'format'>
+				| Omit<ApiOpenSearchParams, 'format'>
+				| Omit<ApiQueryCategoryMembersParams, 'format'>
+				| Omit<ApiQueryRevisionsParams, 'format'>
+				| Omit<ApiQueryTokensParams, 'format'>,
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			callback: (data: any) => void
 		) {
+			const params = _params as typeof _params & {
+				format: 'json';
+				title?: string;
+			};
 			params['format'] = 'json';
 			params['formatversion'] = '2';
 			let i: number = 0;
@@ -366,7 +386,7 @@ const catALot = (): void => {
 						setTimeout(doCall, 300);
 						i++;
 					} else if (params['title']) {
-						CAL.connectionError[CAL.connectionError.length] = params['title'] as string;
+						CAL.connectionError[CAL.connectionError.length] = params['title'];
 						this.updateCounter();
 					}
 				};
@@ -454,10 +474,10 @@ const catALot = (): void => {
 				$parent.append(
 					<>
 						<h5>{CAL.msg('skipped-already', CAL.alreadyThere.length.toString())}</h5>
-						{CAL.alreadyThere.reduce(
+						{CAL.alreadyThere.reduce<(string | React.ReactElement)[]>(
 							(pre, cur, index) =>
 								index < CAL.alreadyThere.length - 1 ? [...pre, cur, <br key={index} />] : [...pre, cur],
-							[] as (string | React.ReactElement)[]
+							[]
 						)}
 					</>
 				);
@@ -466,10 +486,10 @@ const catALot = (): void => {
 				$parent.append(
 					<>
 						<h5>{CAL.msg('skipped-not-found', CAL.notFound.length.toString())}</h5>
-						{CAL.notFound.reduce(
+						{CAL.notFound.reduce<(string | React.ReactElement)[]>(
 							(pre, cur, index) =>
 								index < CAL.notFound.length - 1 ? [...pre, cur, <br key={index} />] : [...pre, cur],
-							[] as (string | React.ReactElement)[]
+							[]
 						)}
 					</>
 				);
@@ -478,12 +498,12 @@ const catALot = (): void => {
 				$parent.append(
 					<>
 						<h5>{CAL.msg('skipped-server', CAL.connectionError.length.toString())}</h5>
-						{CAL.connectionError.reduce(
+						{CAL.connectionError.reduce<(string | React.ReactElement)[]>(
 							(pre, cur, index) =>
 								index < CAL.connectionError.length - 1
 									? [...pre, cur, <br key={index} />]
 									: [...pre, cur],
-							[] as (string | React.ReactElement)[]
+							[]
 						)}
 					</>
 				);
@@ -582,11 +602,11 @@ const catALot = (): void => {
 					title: markedLabelTitle,
 					assert: 'user',
 					bot: true,
-					basetimestamp: timestamp,
-					watchlist: CAL.settings.watchlist,
+					basetimestamp: timestamp as unknown as string,
+					watchlist: CAL.settings.watchlist as never,
 					text,
 					summary,
-					starttimestamp,
+					starttimestamp: starttimestamp as unknown as string,
 				},
 				(): void => {
 					this.updateCounter();
@@ -606,7 +626,7 @@ const catALot = (): void => {
 					meta: 'tokens',
 					titles: markedLabel[0],
 					prop: 'revisions',
-					rvprop: 'content|timestamp',
+					rvprop: ['content', 'timestamp'],
 				},
 				(result): void => {
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
@@ -624,11 +644,11 @@ const catALot = (): void => {
 		private getMarkedLabels(): [string, JQuery][] {
 			const markedLabels: ReturnType<typeof this.getMarkedLabels> = [];
 			CAL.$selectedLabels = CAL.$labels.filter(`.${CLASS_NAME_LABEL_SELECTED}`);
-			CAL.$selectedLabels.each((_index: number, label: HTMLElement): void => {
+			CAL.$selectedLabels.each((_index, label): void => {
 				const $label: JQuery = $(label);
 				const $labelLink: JQuery = $label.find('a[title]');
 				const title: string =
-					$labelLink.attr('title') ||
+					$labelLink.attr('title')?.trim() ||
 					CAL.getTitleFromLink($labelLink.attr('href')) ||
 					CAL.getTitleFromLink($label.find('a').attr('href'));
 				markedLabels[markedLabels.length] = [title, $label];
@@ -809,7 +829,7 @@ const catALot = (): void => {
 					action: 'query',
 					list: 'categorymembers',
 					cmtype: 'subcat',
-					cmlimit: CAL.settings.subcatcount,
+					cmlimit: CAL.settings.subcatcount as never,
 					cmtitle: `Category:${CAL.currentCategory}`,
 				},
 				(result): void => {
@@ -858,13 +878,9 @@ const catALot = (): void => {
 		}
 		private makeClickable(): void {
 			this.findAllLabels();
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-			CAL.$labels
-				.addClass(CLASS_NAME_LABEL)
-				// @ts-expect-error TS2339
-				.onCatALotShiftClick((): void => {
-					this.updateSelectionCounter();
-				});
+			CAL.$labels.addClass(CLASS_NAME_LABEL).onCatALotShiftClick((): void => {
+				this.updateSelectionCounter();
+			});
 		}
 
 		private run(): void {
@@ -874,8 +890,8 @@ const catALot = (): void => {
 				this.$container.resizable({
 					alsoResize: this.$resultList,
 					handles: 'n',
-					resize: (event: JQueryEventObject): void => {
-						const $currentTarget = $(event.currentTarget) as JQuery;
+					resize: (event): void => {
+						const $currentTarget = $(event.currentTarget);
 						$currentTarget.css({
 							left: '',
 							top: '',
@@ -903,13 +919,13 @@ const catALot = (): void => {
 	}
 
 	if (
-		(WG_NAMESPACE_NUMBER === -1 && WG_CANONICAL_SPECIAL_PAGE_NAME === 'Search') ||
-		WG_NAMESPACE_NUMBER === OPTIONS.targetNamespace
+		(wgNamespaceNumber === -1 && wgCanonicalSpecialPageName === 'Search') ||
+		wgNamespaceNumber === OPTIONS.targetNamespace
 	) {
-		if (WG_NAMESPACE_NUMBER === -1) {
+		if (wgNamespaceNumber === -1) {
 			CAL.isSearchMode = true;
 		}
-		/*! Cat-a-lot messages | CC-BY-SA-4.0 <https://qwbk.cc/H:CC-BY-SA-4.0> */
+		/*! Cat-a-lot messages | CC-BY-SA-4.0 <https://ysymh.cc/H:CC-BY-SA-4.0> */
 		setMessages();
 		void getBody().then(($body: JQuery<HTMLBodyElement>): void => {
 			new CAL($body).buildElements();

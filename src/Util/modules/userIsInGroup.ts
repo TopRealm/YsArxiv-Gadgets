@@ -1,8 +1,12 @@
+import {generateArray} from './generateArray';
+
 type UserIsInGroup = typeof userIsInGroup;
 
-const userIsInGroup = (group: string) => {
+const userIsInGroup = (groups: string | string[]) => {
 	const {wgUserGroups, wgGlobalGroups} = mw.config.get();
-	return wgUserGroups?.includes(group) || (wgGlobalGroups as string[])?.includes(group);
+	return [...(wgUserGroups || []), ...((wgGlobalGroups as string[]) || [])].some((element: string): boolean => {
+		return generateArray(groups).includes(element);
+	});
 };
 
 export {type UserIsInGroup, userIsInGroup};

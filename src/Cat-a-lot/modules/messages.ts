@@ -1,5 +1,6 @@
 import type {MessageKey} from './types';
-import {WG_USER_LANGUAGE} from './constant';
+
+const {wgUserLanguage} = mw.config.get();
 
 const DEFAULT_MESSAGES = {
 	// as in 17 files selected
@@ -51,12 +52,12 @@ const DEFAULT_MESSAGES = {
 } satisfies Record<MessageKey, string>;
 
 const setMessages = (): void => {
-	/*! Cat-a-lot messages | CC-BY-SA-4.0 <https://qwbk.cc/H:CC-BY-SA-4.0> */
-	if (WG_USER_LANGUAGE === 'en') {
+	/*! Cat-a-lot messages | CC-BY-SA-4.0 <https://youshou.wiki/H:CC-BY-SA-4.0> */
+	if (wgUserLanguage === 'en') {
 		return;
 	}
 
-	if (['zh-hant', 'zh-hk', 'zh-mo', 'zh-tw'].includes(WG_USER_LANGUAGE)) {
+	if (['zh-hant', 'zh-hk', 'zh-mo', 'zh-tw'].includes(wgUserLanguage)) {
 		mw.messages.set<typeof DEFAULT_MESSAGES>({
 			// as in 17 files selected
 			'cat-a-lot-files-selected': '$1個文件已選擇',
