@@ -1,0 +1,9 @@
+{
+	"enable": true,
+	"description": "<span id=\"Gadget-PagePatroller\"></span> 设置页面的css",
+	"section": "browser",
+	"default": true,
+	"dependencies": ["mediawiki.user"],
+	"hidden": true,
+	"rights": ["edit"]
+}
