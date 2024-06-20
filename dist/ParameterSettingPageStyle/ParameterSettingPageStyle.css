@@ -1,0 +1,62 @@
+/**
+ * SPDX-License-Identifier: CC-BY-SA-4.0
+ * _addText: '{{Gadget Header|license=CC-BY-SA-4.0|import=no}}'
+ * @author 顶呱呱的阿杰 
+ */
+/**
+ * +------------------------------------------------------------+
+ * |            === WARNING: GLOBAL GADGET FILE ===             |
+ * +------------------------------------------------------------+
+ * |       All changes should be made in the repository,        |
+ * |                otherwise they will be lost.                |
+ * +------------------------------------------------------------+
+ * |        Changes to this page may affect many users.         |
+ * | Please discuss changes by opening an issue before editing. |
+ * +------------------------------------------------------------+
+ */
+/* <nowiki> */
+
+/* src/ParameterSettingPageStyle/ParameterSettingPageStyle.less */
+.oo-ui-dropdownInputWidget.oo-ui-widget-enabled:hover {
+  border-radius: 5px;
+}
+.mw-prefs-tabs-wrapper.oo-ui-layout.oo-ui-panelLayout.oo-ui-panelLayout-framed {
+  border: 0;
+}
+#prefcontrol button.oo-ui-buttonElement-button {
+  margin-left: 30px;
+}
+.mw-prefs-buttons {
+  margin-top: 20px;
+  border-radius: 5px;
+  background: rgba(240, 248, 255, 0.9);
+}
+#ooui-php-490 {
+  border-radius: 5px 5px 0 0;
+  background: rgba(240, 248, 255, 0.5);
+}
+.oo-ui-widget.oo-ui-widget-enabled.oo-ui-labelElement.oo-ui-optionWidget.oo-ui-tabOptionWidget {
+  border-radius: 6px;
+}
+.oo-ui-menuLayout-content {
+  border-radius: 0 0 5px 5px;
+  background: rgba(255, 255, 255, 0.6);
+  position: relative;
+  top: 10px !important;
+}
+.oo-ui-menuLayout-content::after {
+  content: "";
+  width: 100%;
+  height: 10px;
+  position: absolute;
+  top: -10px;
+  background:
+    linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.6),
+      rgba(240, 248, 255, 0.5));
+}
+
+/* </nowiki> */
+
+/*# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vLi4vc3JjL1BhcmFtZXRlclNldHRpbmdQYWdlU3R5bGUvUGFyYW1ldGVyU2V0dGluZ1BhZ2VTdHlsZS5sZXNzIl0sCiAgInNvdXJjZXNDb250ZW50IjogWyIub28tdWktZHJvcGRvd25JbnB1dFdpZGdldC5vby11aS13aWRnZXQtZW5hYmxlZDpob3ZlciB7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbn1cbi5tdy1wcmVmcy10YWJzLXdyYXBwZXIub28tdWktbGF5b3V0Lm9vLXVpLXBhbmVsTGF5b3V0Lm9vLXVpLXBhbmVsTGF5b3V0LWZyYW1lZCB7XG4gIGJvcmRlcjogMDtcbn1cbiNwcmVmY29udHJvbCBidXR0b24ub28tdWktYnV0dG9uRWxlbWVudC1idXR0b24ge1xuICBtYXJnaW4tbGVmdDogMzBweDtcbn1cbi5tdy1wcmVmcy1idXR0b25zIHtcbiAgbWFyZ2luLXRvcDogMjBweDtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBiYWNrZ3JvdW5kOiByZ2JhKDI0MCwgMjQ4LCAyNTUsIDAuOSk7XG59XG4jb291aS1waHAtNDkwIHtcbiAgYm9yZGVyLXJhZGl1czogNXB4IDVweCAwIDA7XG4gIGJhY2tncm91bmQ6IHJnYmEoMjQwLCAyNDgsIDI1NSwgMC41KTtcbn1cbi5vby11aS13aWRnZXQub28tdWktd2lkZ2V0LWVuYWJsZWQub28tdWktbGFiZWxFbGVtZW50Lm9vLXVpLW9wdGlvbldpZGdldC5vby11aS10YWJPcHRpb25XaWRnZXQge1xuICBib3JkZXItcmFkaXVzOiA2cHg7XG59XG4ub28tdWktbWVudUxheW91dC1jb250ZW50IHtcbiAgYm9yZGVyLXJhZGl1czogMCAwIDVweCA1cHg7XG4gIGJhY2tncm91bmQ6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMC42KTtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB0b3A6IDEwcHggIWltcG9ydGFudDtcbn1cbi5vby11aS1tZW51TGF5b3V0LWNvbnRlbnQ6OmFmdGVyIHtcbiAgY29udGVudDogJyc7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEwcHg7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiAtMTBweDtcbiAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KDBkZWcsIHJnYmEoMjU1LCAyNTUsIDI1NSwgMC42KSwgcmdiYSgyNDAsIDI0OCwgMjU1LCAwLjUpKTtcbn1cbiJdLAogICJtYXBwaW5ncyI6ICI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxDQUFDLHlCQUF5QixDQUFDLG9CQUFvQjtBQUM3QyxpQkFBZTtBQUNqQjtBQUNBLENBQUMscUJBQXFCLENBQUMsWUFBWSxDQUFDLGlCQUFpQixDQUFDO0FBQ3BELFVBQVE7QUFDVjtBQUNBLENBQUMsWUFBWSxNQUFNLENBQUM7QUFDbEIsZUFBYTtBQUNmO0FBQ0EsQ0FBQztBQUNDLGNBQVk7QUFDWixpQkFBZTtBQUNmLGNBQVksS0FBSyxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsRUFBRTtBQUNsQztBQUNBLENBQUM7QUFDQyxpQkFBZSxJQUFJLElBQUksRUFBRTtBQUN6QixjQUFZLEtBQUssR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUU7QUFDbEM7QUFDQSxDQUFDLFlBQVksQ0FsQmMsb0JBa0JPLENBQUMsa0JBQWtCLENBQUMsa0JBQWtCLENBQUM7QUFDdkUsaUJBQWU7QUFDakI7QUFDQSxDQUFDO0FBQ0MsaUJBQWUsRUFBRSxFQUFFLElBQUk7QUFDdkIsY0FBWSxLQUFLLEdBQUcsRUFBRSxHQUFHLEVBQUUsR0FBRyxFQUFFO0FBQ2hDLFlBQVU7QUFDVixPQUFLO0FBQ1A7QUFDQSxDQU5DLHdCQU13QjtBQUN2QixXQUFTO0FBQ1QsU0FBTztBQUNQLFVBQVE7QUFDUixZQUFVO0FBQ1YsT0FBSztBQUNMO0FBQUEsSUFBWTtBQUFBLE1BQWdCLElBQWhCO0FBQUEsTUFBc0IsS0FBSyxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsRUFBRSxJQUExQztBQUFBLE1BQWdELEtBQUssR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUU7QUFDbEY7IiwKICAibmFtZXMiOiBbXQp9Cg== */
