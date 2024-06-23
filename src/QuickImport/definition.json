@@ -1,7 +1,0 @@
-{
-	"enable": true,
-	"description": "<span id=\"Gadget-QuickImport\"></span> 快速导入求闻百科页面",
-	"section": "edit",
-	"dependencies": ["ext.gadget.Toastify", "ext.gadget.Util", "mediawiki.api", "mediawiki.util"],
-	"rights": ["import"]
-}
