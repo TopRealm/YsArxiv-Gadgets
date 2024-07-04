@@ -9,7 +9,7 @@ declare global {
 }
 
 const extendJQueryPrototype = (): void => {
-	/*! jQuery checkboxShiftClick | GPL-2.0 <https://ysymh.cc/H:GPL> */
+	/*! jQuery checkboxShiftClick | GPL-2.0 <https://qwbk.cc/H:GPL> */
 	$.fn.extend({
 		onCatALotShiftClick: function (callback) {
 			let prevCheckbox: JQuery | undefined;

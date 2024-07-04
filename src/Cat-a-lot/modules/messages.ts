@@ -52,7 +52,7 @@ const DEFAULT_MESSAGES = {
 } satisfies Record<MessageKey, string>;
 
 const setMessages = (): void => {
-	/*! Cat-a-lot messages | CC-BY-SA-4.0 <https://youshou.wiki/H:CC-BY-SA-4.0> */
+	/*! Cat-a-lot messages | CC-BY-SA-4.0 <https://ysymh.cc/H:CC-BY-SA-4.0> */
 	if (wgUserLanguage === 'en') {
 		return;
 	}
