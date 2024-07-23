@@ -90,9 +90,7 @@ const mwAddPreview = ($body: JQuery<HTMLBodyElement>): void => {
 			const textareaContent: string = $body.find('textarea').val() ?? ''; // 尝试取得已删内容源代码
 
 			let wikitext: string = luaGetJSONwikitext(textareaContent);
-			if (!wikitext) {
-				wikitext = luaGetCSSwikitext(textareaContent);
-			}
+			wikitext ||= luaGetCSSwikitext(textareaContent);
 
 			if (wikitext) {
 				// 若取得 _addText 则显示预览

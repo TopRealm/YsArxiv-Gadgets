@@ -42,11 +42,7 @@ form.quickform {
 	vertical-align: middle;
 
 	* {
-		font-family: @sans-serif-zh-hans, sans-serif, @emoji-font;
-
-		html:lang(zh-hant) & {
-			font-family: @sans-serif-zh-hant, sans-serif, @emoji-font;
-		}
+		font-family: var(--fonts-sans, sans-serif);
 	}
 
 	fieldset {
@@ -180,7 +176,7 @@ div.morebits-usertext {
 	border: 1px #666 solid;
 	background-color: #f0f8ff;
 	background-image: none;
-	font-family: @sans-serif-zh-hans, sans-serif, @emoji-font;
+	font-family: var(--fonts-sans, sans-serif);
 
 	/* px translations in comments are w.r.t standard browser settings,
 	   in other settings, the sizes would be scaled accordingly */
@@ -199,7 +195,7 @@ body .ui-dialog.morebits-dialog .ui-dialog-titlebar {
 	padding: 0.4em 0.3em 0.5em !important;
 	background-color: #bccadf !important;
 	background-image: none !important;
-	font: bold 108% sans-serif; /* 100% is 12px (from above) → 108% is 12.96px */
+	font: bold 108% var(--fonts-sans, sans-serif); /* 100% is 12px (from above) → 108% is 12.96px */
 	white-space: nowrap;
 }
 

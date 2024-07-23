@@ -107,7 +107,7 @@ const catALot = (): void => {
 								className={CLASS_NAME_CONTAINER_DATA_SEARCH_INPUT_CONTAINER_INPUT}
 								placeholder={CAL.msg('enter-name')}
 								type="text"
-								value={CAL.isSearchMode ? mw.util.getParamValue('search') ?? '' : ''}
+								value={CAL.isSearchMode ? (mw.util.getParamValue('search') ?? '') : ''}
 								onKeyDown={(event): void => {
 									const $element = $(event.currentTarget) as JQuery<HTMLInputElement>;
 									if (event.key === 'Enter') {
@@ -293,11 +293,9 @@ const catALot = (): void => {
 
 		private static async findAllVariants(category: string): Promise<string[]> {
 			if (CAL.variantCache[category] !== undefined) {
-				return CAL.variantCache[category] as string[];
+				return CAL.variantCache[category];
 			}
-			if (!CAL.variantCache2[category]) {
-				CAL.variantCache2[category] = {};
-			}
+			CAL.variantCache2[category] ??= {};
 			const results: string[] = [];
 			const params: ApiParseParams = {
 				action: 'parse',
@@ -313,7 +311,7 @@ const catALot = (): void => {
 					continue;
 				}
 				try {
-					const {parse} = await CAL.api.post({
+					const {parse} = await CAL.api.get({
 						...params,
 						variant,
 					} as typeof params);
@@ -390,7 +388,11 @@ const catALot = (): void => {
 						this.updateCounter();
 					}
 				};
-				CAL.api.post(params).then(callback).catch(handleError);
+				if (params.action === 'query') {
+					CAL.api.get(params).then(callback).catch(handleError);
+				} else {
+					CAL.api.post(params).then(callback).catch(handleError);
+				}
 			};
 			doCall();
 		}

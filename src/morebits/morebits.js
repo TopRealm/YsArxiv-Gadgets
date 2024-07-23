@@ -30,13 +30,14 @@
  * All the stuff here works on all browsers for which MediaWiki provides JavaScript support.
  *
  * This library is maintained by the maintainers of Twinkle.
- * For queries, suggestions, help, etc., head to [Help:Twinkle](https://youshou.wiki/wiki/H:TW).
+ * For queries, suggestions, help, etc., head to [Help:Twinkle](https://www.qiuwenbaike.cn/wiki/H:TW).
  * The latest development source is available at {@link https://github.com/wikimedia-gadgets/twinkle/blob/master/morebits.js|GitHub}.
  *
  * @param {JQuery} $
  * @namespace Morebits
  */
 import './morebits.less';
+import {generateArray} from 'ext.gadget.Util';
 
 (function morebits($) {
 	// Wrap entire file with anonymous function
@@ -87,14 +88,15 @@ import './morebits.less';
 	 * @returns {boolean}
 	 */
 	Morebits.userIsInGroup = (group) => {
-		return mw.config.get('wgUserGroups').includes(group);
+		return mw.config.get('wgUserGroups').includes(group) || mw.config.get('wgGlobalGroups').includes(group);
 	};
 	/**
 	 * Hardcodes whether the user is a sysop, used a lot.
 	 *
 	 * @type {boolean}
 	 */
-	Morebits.userIsSysop = Morebits.userIsInGroup('sysop') || Morebits.userIsInGroup('steward');
+	Morebits.userIsSysop =
+		Morebits.userIsInGroup('sysop') || Morebits.userIsInGroup('steward') || Morebits.userIsInGroup('qiuwen');
 	/**
 	 * Deprecated as of February 2021, use {@link Morebits.ip.sanitizeIPv6}.
 	 *
@@ -109,7 +111,7 @@ import './morebits.less';
 	 */
 	Morebits.sanitizeIPv6 = (address) => {
 		console.warn(
-			'NOTE: Morebits.sanitizeIPv6 was renamed to Morebits.ip.sanitizeIPv6 in February 2021, please use that instead'
+			'[Morebits] NOTE: Morebits.sanitizeIPv6 was renamed to Morebits.ip.sanitizeIPv6 in February 2021, please use that instead'
 		);
 		return Morebits.ip.sanitizeIPv6(address);
 	};
@@ -121,12 +123,11 @@ import './morebits.less';
 	 * @returns {boolean}
 	 */
 	Morebits.isPageRedirect = () => {
-		const $body = $('body');
 		return !!(
 			mw.config.get('wgIsRedirect') ||
 			document.querySelector('#softredirect') ||
-			$body.find('.box-RfD').length ||
-			$body.find('.box-Redirect_category_shell').length
+			document.querySelector('.box-RfD') ||
+			document.querySelector('.box-Redirect_category_shell')
 		);
 	};
 	/**
@@ -169,9 +170,7 @@ import './morebits.less';
 		if (!input) {
 			return fragment;
 		}
-		if (!Array.isArray(input)) {
-			input = [input];
-		}
+		input = generateArray(input);
 		for (const element of input) {
 			if (element instanceof Node) {
 				fragment.appendChild(element);
@@ -194,9 +193,7 @@ import './morebits.less';
 		// Don't convert wikilinks within code tags as they're used for displaying wiki-code
 		ub.unbind('<code>', '</code>');
 		ub.content = ub.content.replace(/\[\[:?(?:([^|\]]+?)\|)?([^\]|]+?)\]\]/g, (_, target, text_) => {
-			if (!target) {
-				target = text_;
-			}
+			target ||= text_;
 			return `<a rel="noopener" target="_blank" href="${mw.util.getUrl(target)}" title="${target.replace(
 				/"/g,
 				'&#34;'
@@ -220,9 +217,7 @@ import './morebits.less';
 	 * @returns {string} - Regex-suitable string of all namespace aliases.
 	 */
 	Morebits.namespaceRegex = (namespaces) => {
-		if (!Array.isArray(namespaces)) {
-			namespaces = [namespaces];
-		}
+		namespaces = generateArray(namespaces);
 		const aliases = [];
 		let regex;
 		for (const [name, number] of Object.entries(mw.config.get('wgNamespaceIds'))) {
@@ -230,13 +225,11 @@ import './morebits.less';
 				// Namespaces are completely agnostic as to case,
 				// and a regex string is more useful/compatible than a RegExp object,
 				// so we accept any casing for any letter.
-				aliases.push(
-					[...name]
-						.map((char) => {
-							return Morebits.pageNameRegex(char);
-						})
-						.join('')
-				);
+				aliases[aliases.length] = [...name]
+					.map((char) => {
+						return Morebits.pageNameRegex(char);
+					})
+					.join('');
 			}
 		}
 		switch (aliases.length) {
@@ -372,7 +365,7 @@ import './morebits.less';
 		} else {
 			child = new Morebits.quickForm.element(data);
 		}
-		this.childs.push(child);
+		this.childs[this.childs.length] = child;
 		return child;
 	};
 	/**
@@ -385,9 +378,9 @@ import './morebits.less';
 	 */
 	Morebits.quickForm.element.prototype.render = function (internalSubgroupId) {
 		const currentNode = this.compute(this.data, internalSubgroupId);
-		for (let i = 0; i < this.childs.length; ++i) {
+		for (const child of this.childs) {
 			// do not pass internal_subgroup_id to recursive calls
-			currentNode[1].appendChild(this.childs[i].render());
+			currentNode[1].appendChild(child.render());
 		}
 		return currentNode[0];
 	};
@@ -554,9 +547,7 @@ import './morebits.less';
 						let event;
 						if (current.subgroup) {
 							let tmpgroup = current.subgroup;
-							if (!Array.isArray(tmpgroup)) {
-								tmpgroup = [tmpgroup];
-							}
+							tmpgroup = generateArray(tmpgroup);
 							const subgroupRaw = new Morebits.quickForm.element({
 								type: 'div',
 								id: `${id}_${i}_subgroup`,
@@ -565,9 +556,7 @@ import './morebits.less';
 								const newEl = {
 									...el,
 								};
-								if (!newEl.type) {
-									newEl.type = data.type;
-								}
+								newEl.type ||= data.type;
 								newEl.name = `${current.name || data.name}.${newEl.name}`;
 								subgroupRaw.append(newEl);
 							}
@@ -855,9 +844,7 @@ import './morebits.less';
 			default:
 				throw new Error(`Morebits.quickForm: unknown element type ${data.type.toString()}`);
 		}
-		if (!childContainer) {
-			childContainer = node;
-		}
+		childContainer ||= node;
 		if (data.tooltip) {
 			Morebits.quickForm.element.generateTooltip(label || node, data);
 		}
@@ -932,7 +919,7 @@ import './morebits.less';
 					} else {
 						result[fieldNameNorm] ||= [];
 						if (field.checked) {
-							result[fieldNameNorm].push(field.value);
+							result[fieldNameNorm][result[fieldNameNorm].length] = field.value;
 						}
 					}
 					break;
@@ -1140,9 +1127,9 @@ import './morebits.less';
 			for (i = 0; i < options.length; ++i) {
 				if (options[i].selected) {
 					if (options[i].values) {
-						returnArray.push(options[i].values);
+						returnArray[returnArray.length] = options[i].values;
 					} else {
-						returnArray.push(options[i].value);
+						returnArray[returnArray.length] = options[i].value;
 					}
 				}
 			}
@@ -1159,9 +1146,9 @@ import './morebits.less';
 						continue;
 					}
 					if (elements[i].values) {
-						returnArray.push(elements[i].values);
+						returnArray[returnArray.length] = elements[i].values;
 					} else {
-						returnArray.push(elements[i].value);
+						returnArray[returnArray.length] = elements[i].value;
 					}
 				}
 			}
@@ -1192,9 +1179,9 @@ import './morebits.less';
 			for (i = 0; i < options.length; ++i) {
 				if (!options[i].selected) {
 					if (options[i].values) {
-						returnArray.push(options[i].values);
+						returnArray[returnArray.length] = options[i].values;
 					} else {
-						returnArray.push(options[i].value);
+						returnArray[returnArray.length] = options[i].value;
 					}
 				}
 			}
@@ -1211,9 +1198,9 @@ import './morebits.less';
 						continue;
 					}
 					if (elements[i].values) {
-						returnArray.push(elements[i].values);
+						returnArray[returnArray.length] = elements[i].values;
 					} else {
-						returnArray.push(elements[i].value);
+						returnArray[returnArray.length] = elements[i].value;
 					}
 				}
 			}
@@ -1409,7 +1396,7 @@ import './morebits.less';
 					i += end.length - 1;
 				}
 				if (!level && initial !== null) {
-					result.push(str.slice(initial, i + 1));
+					result[result.length] = str.slice(initial, i + 1);
 					initial = null;
 				}
 			}
@@ -1825,10 +1812,8 @@ import './morebits.less';
 				}
 			}
 		}
-		if (!this._d) {
-			// Try standard date
-			this._d = new (Function.prototype.bind.apply(Date, [Date, ...(Array.isArray(args) ? args : [args])]))();
-		}
+		// Try standard date
+		this._d ??= new (Function.prototype.bind.apply(Date, [Date, ...generateArray(args)]))();
 		// Still no?
 		if (!this.isValid()) {
 			mw.log.warn('Invalid Morebits.date initialisation:', args);
@@ -2165,7 +2150,9 @@ import './morebits.less';
 	 * @returns {boolean}
 	 */
 	Morebits.wiki.isPageRedirect = () => {
-		console.warn('NOTE: Morebits.wiki.isPageRedirect has been deprecated, use Morebits.isPageRedirect instead.');
+		console.warn(
+			'[Morebits] NOTE: Morebits.wiki.isPageRedirect has been deprecated, use Morebits.isPageRedirect instead.'
+		);
 		return Morebits.isPageRedirect();
 	};
 	/* **************** Morebits.wiki.actionCompleted **************** */
@@ -2348,15 +2335,16 @@ import './morebits.less';
 		 */
 		post(callerAjaxParameters) {
 			++Morebits.wiki.numberOfActionsLeft;
-			const _queryString = [];
+			const queryStringArr = [];
 			for (const [i, val] of Object.entries(this.query)) {
 				if (Array.isArray(val)) {
-					_queryString.push(`${encodeURIComponent(i)}=${val.map(encodeURIComponent).join('|')}`);
+					queryStringArr[queryStringArr.length] =
+						`${encodeURIComponent(i)}=${val.map(encodeURIComponent).join('|')}`;
 				} else if (val !== undefined) {
-					_queryString.push(`${encodeURIComponent(i)}=${encodeURIComponent(val)}`);
+					queryStringArr[queryStringArr.length] = `${encodeURIComponent(i)}=${encodeURIComponent(val)}`;
 				}
 			}
-			const queryString = _queryString.join('&').replace(/^(.*?)(\btoken=[^&]*)&(.*)/, '$1$3&$2');
+			const queryString = queryStringArr.join('&').replace(/^(.*?)(\btoken=[^&]*)&(.*)/, '$1$3&$2');
 			// token should always be the last item in the query string (bug TW-B-0013)
 			const ajaxparams = {
 				context: this,
@@ -2477,7 +2465,7 @@ import './morebits.less';
 			return JSON.parse(wikitext);
 		});
 	};
-	let morebitsWikiApiUserAgent = 'YsArchives/1.1 (morebits.js)';
+	let morebitsWikiApiUserAgent = 'Qiuwen/1.1 (morebits.js)';
 	/**
 	 * Set the custom user agent header, which is used for server-side logging.
 	 * Note that doing so will set the useragent for every `Morebits.wiki.api`
@@ -2487,12 +2475,12 @@ import './morebits.less';
 	 * for original announcement.
 	 *
 	 * @memberof Morebits.wiki.api
-	 * @param {string} [ua=YsArchives/1.1 (morebits.js)] - User agent.  The default
+	 * @param {string} [ua=Qiuwen/1.1 (morebits.js)] - User agent.  The default
 	 * value of `morebits.js` will be appended to any provided
 	 * value.
 	 */
 	Morebits.wiki.api.setApiUserAgent = (ua) => {
-		morebitsWikiApiUserAgent = `YsArchives/1.1 (morebits.js${ua ? `; ${ua}` : ''})`;
+		morebitsWikiApiUserAgent = `Qiuwen/1.1 (morebits.js${ua ? `; ${ua}` : ''})`;
 	};
 	/**
 	 * Change/revision tag applied to Morebits actions when no other tags are specified.
@@ -2568,9 +2556,7 @@ import './morebits.less';
 	 * or a Morebits.status object
 	 */
 	Morebits.wiki.page = function (pageName, status) {
-		if (!status) {
-			status = window.wgULS('打开页面“', '打開頁面「') + pageName + window.wgULS('”', '」');
-		}
+		status ||= window.wgULS('打开页面“', '打開頁面「') + pageName + window.wgULS('”', '」');
 		/**
 		 * Private context variables.
 		 *
@@ -3145,7 +3131,7 @@ import './morebits.less';
 		 */
 		this.setWatchlistFromPreferences = (watchlistOption) => {
 			console.warn(
-				'NOTE: Morebits.wiki.page.setWatchlistFromPreferences was deprecated December 2020, please use setWatchlist'
+				'[Morebits] NOTE: Morebits.wiki.page.setWatchlistFromPreferences was deprecated December 2020, please use setWatchlist'
 			);
 			if (watchlistOption) {
 				ctx.watchlistOption = 'preferences';
@@ -3720,7 +3706,7 @@ import './morebits.less';
 			ctx.testActions = []; // was null
 			for (const action of Object.keys(testactions)) {
 				if (testactions[action]) {
-					ctx.testActions.push(action);
+					ctx.testActions[ctx.testActions.length] = action;
 				}
 			}
 			if (ctx.editMode === 'revert') {
@@ -3744,7 +3730,7 @@ import './morebits.less';
 					}
 				}
 				// set revert edit summary
-				ctx.editSummary = `[[LIB:UNDO|撤销]]由 ${ctx.revertUser} 所做出的${window.wgULS('修订 ', '修訂 ')}${
+				ctx.editSummary = `[[QW:UNDO|撤销]]由 ${ctx.revertUser} 所做出的${window.wgULS('修订 ', '修訂 ')}${
 					ctx.revertOldID
 				}：${ctx.editSummary}`;
 			}
@@ -3754,9 +3740,7 @@ import './morebits.less';
 		};
 		// helper function to parse the page name returned from the API
 		const fnCheckPageName = function (response, onFailure) {
-			if (!onFailure) {
-				onFailure = emptyFunction;
-			}
+			onFailure ||= emptyFunction;
 			const page = response.pages && response.pages[0];
 			if (page) {
 				// check for invalid titles
@@ -3927,8 +3911,8 @@ import './morebits.less';
 							window.wgULS('编辑被防滥用过滤器规则“', '編輯被防濫用過濾器規則「') +
 								errorData.abusefilter.description +
 								window.wgULS(
-									'”阻止。若您认为您的该次编辑是有意义的，请至 Wikipedia:防滥用过滤器/错误报告 提报。',
-									'」阻止。若您認為您的該次編輯是有意義的，請至 Wikipedia:防濫用過濾器/錯誤報告 提報。'
+									'”阻止。若您认为您的该次编辑是有意义的，请至 Qiuwen_talk:管理员告示板 提报。',
+									'」阻止。若您認為您的該次編輯是有意義的，請至 Qiuwen_talk:管理員告示板 提報。'
 								)
 						);
 						break;
@@ -4472,16 +4456,16 @@ import './morebits.less';
 			const protections = [];
 			const expirys = [];
 			if (ctx.protectEdit) {
-				protections.push(`edit=${ctx.protectEdit.level}`);
-				expirys.push(ctx.protectEdit.expiry);
+				protections[protections.length] = `edit=${ctx.protectEdit.level}`;
+				expirys[expirys.length] = ctx.protectEdit.expiry;
 			}
 			if (ctx.protectMove) {
-				protections.push(`move=${ctx.protectMove.level}`);
-				expirys.push(ctx.protectMove.expiry);
+				protections[protections.length] = `move=${ctx.protectMove.level}`;
+				expirys[expirys.length] = ctx.protectMove.expiry;
 			}
 			if (ctx.protectCreate) {
-				protections.push(`create=${ctx.protectCreate.level}`);
-				expirys.push(ctx.protectCreate.expiry);
+				protections[protections.length] = `create=${ctx.protectCreate.level}`;
+				expirys[expirys.length] = ctx.protectCreate.expiry;
 			}
 			const query = {
 				action: 'protect',
@@ -4662,7 +4646,7 @@ import './morebits.less';
 				current += test3;
 				i += 2;
 				if (test3 === '{{{') {
-					level.push(3);
+					level[level.length] = 3;
 				} else {
 					level.pop();
 				}
@@ -4674,9 +4658,9 @@ import './morebits.less';
 				current += test2;
 				++i;
 				if (test2 === '{{') {
-					level.push(2);
+					level[level.length] = 2;
 				} else {
-					level.push('wl');
+					level[level.length] = 'wl';
 				}
 				continue;
 			}
@@ -5667,7 +5651,7 @@ import './morebits.less';
 						},
 						false
 					);
-					self.buttons.push(button);
+					self.buttons[self.buttons.length] = button;
 				});
 			// remove all buttons from the button pane and re-add them
 			if (this.buttons.length > 0) {

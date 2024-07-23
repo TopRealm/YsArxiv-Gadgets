@@ -1,5 +1,5 @@
 // Translatable strings
-const popupStrings: {[key: string]: string} = {
+const message: {[key: string]: string} = {
 	// summary data, searching etc.
 	article: window.wgULS('条目', '條目'),
 	category: window.wgULS('个分类', '個分類'),
@@ -318,4 +318,4 @@ const popupStrings: {[key: string]: string} = {
 	comma: '，',
 };
 
-export {popupStrings};
+export {message};

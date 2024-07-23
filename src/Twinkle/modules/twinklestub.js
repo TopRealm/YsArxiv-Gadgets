@@ -1,5 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+import {generateArray} from 'ext.gadget.Util';
+
 /*! Twinkle.js - twinklestub.js */
 (function twinklestub($) {
 	/**
@@ -14,7 +16,7 @@
 			// Skip
 			// article/draft article tagging
 		} else if (
-			([0, 302].includes(mw.config.get('wgNamespaceNumber')) && mw.config.get('wgCurRevisionId')) ||
+			([0, 118].includes(mw.config.get('wgNamespaceNumber')) && mw.config.get('wgCurRevisionId')) ||
 			Morebits.pageNameNorm === Twinkle.getPref('sandboxPage')
 		) {
 			Twinkle.stub.mode = '条目';
@@ -26,7 +28,7 @@
 			// Skip
 			// article/draft article tagging
 		} else if (
-			((mw.config.get('wgNamespaceNumber') === 0 || mw.config.get('wgNamespaceNumber') === 302) &&
+			((mw.config.get('wgNamespaceNumber') === 0 || mw.config.get('wgNamespaceNumber') === 118) &&
 				mw.config.get('wgCurRevisionId')) ||
 			Morebits.pageNameNorm === Twinkle.getPref('sandboxPage')
 		) {
@@ -42,7 +44,7 @@
 	Twinkle.stub.callback = () => {
 		const Window = new Morebits.simpleWindow(630, Twinkle.stub.mode === 'article' ? 450 : 400);
 		Window.setScriptName('Twinkle');
-		Window.addFooterLink(window.wgULS('小作品說明', '小作品说明'), 'LIB:小作品');
+		Window.addFooterLink(window.wgULS('小作品說明', '小作品说明'), 'QW:小作品');
 		Window.addFooterLink(window.wgULS('小作品设置', '小作品設定'), 'H:TW/PREF#stub');
 		Window.addFooterLink(window.wgULS('Twinkle帮助', 'Twinkle說明'), 'H:TW/DOC#stub');
 		const form = new Morebits.quickForm(Twinkle.stub.callback.evaluate);
@@ -93,7 +95,7 @@
 				});
 				break;
 			default:
-				mw.notify(`Twinkle.stub：未知模式 ${Twinkle.stub.mode}`, {
+				void mw.notify(`Twinkle.stub：未知模式 ${Twinkle.stub.mode}`, {
 					type: 'warn',
 					tag: 'twinklestub',
 				});
@@ -116,9 +118,7 @@
 	Twinkle.stub.updateSortOrder = (e) => {
 		const sortorder = e.target.value;
 		Twinkle.stub.checkedTags = e.target.form.getChecked('articleTags');
-		if (!Twinkle.stub.checkedTags) {
-			Twinkle.stub.checkedTags = [];
-		}
+		Twinkle.stub.checkedTags ??= [];
 		const container = new Morebits.quickForm.element({
 			type: 'fragment',
 		});
@@ -141,7 +141,7 @@
 			});
 			const customcheckboxes = [];
 			for (const item of Twinkle.getPref('customStubList')) {
-				customcheckboxes.push(makeCheckbox(item.value, item.label));
+				customcheckboxes[customcheckboxes.length] = makeCheckbox(item.value, item.label);
 			}
 			container.append({
 				type: 'checkbox',
@@ -156,7 +156,7 @@
 				const checkboxes = [];
 				for (const tag of array) {
 					const description = Twinkle.stub.article.tags[tag];
-					checkboxes.push(makeCheckbox(tag, description));
+					checkboxes[checkboxes.length] = makeCheckbox(tag, description);
 				}
 				subdiv.append({
 					type: 'checkbox',
@@ -193,7 +193,7 @@
 		} else {
 			const checkboxes = [];
 			for (const [tag, description] of Object.entries(Twinkle.stub.article.tags)) {
-				checkboxes.push(makeCheckbox(tag, description));
+				checkboxes[checkboxes.length] = makeCheckbox(tag, description);
 			}
 			container.append({
 				type: 'checkbox',
@@ -324,7 +324,7 @@
 						)
 					);
 				} else {
-					tags = [...tags, ...(Array.isArray(params.tags[i]) ? params.tags[i] : [params.tags[i]])];
+					tags = [...tags, ...generateArray(params.tags[i])];
 				}
 			}
 			tags = [...tags, ...groupableTags];
@@ -372,14 +372,14 @@
 				params.group = false;
 				break;
 			default:
-				mw.notify(`Twinkle.stub：未知模式 ${Twinkle.stub.mode}`, {
+				void mw.notify(`Twinkle.stub：未知模式 ${Twinkle.stub.mode}`, {
 					type: 'warn',
 					tag: 'twinklestub',
 				});
 				break;
 		}
 		if (!params.tags.length) {
-			mw.notify('必须选择至少一个标记！', {
+			void mw.notify('必须选择至少一个标记！', {
 				type: 'warn',
 				tag: 'twinklestub',
 			});
@@ -395,24 +395,24 @@
 		if (Twinkle.stub.mode === '重定向') {
 			Morebits.wiki.actionCompleted.followRedirect = false;
 		}
-		const ysarchives_page = new Morebits.wiki.page(
+		const qiuwen_page = new Morebits.wiki.page(
 			mw.config.get('wgPageName'),
 			window.wgULS('正在标记', '正在標記') + Twinkle.stub.mode
 		);
-		ysarchives_page.setCallbackParameters(params);
+		qiuwen_page.setCallbackParameters(params);
 		switch (Twinkle.stub.mode) {
 			case '條目':
 			case '条目':
 			/* falls through */
 			case '重定向':
-				ysarchives_page.load(Twinkle.stub.callbacks.main);
+				qiuwen_page.load(Twinkle.stub.callbacks.main);
 				return;
 			case '文件':
 			case '檔案':
-				ysarchives_page.load(Twinkle.stub.callbacks.file);
+				qiuwen_page.load(Twinkle.stub.callbacks.file);
 				break;
 			default:
-				mw.notify(`Twinkle.stub：未知模式 ${Twinkle.stub.mode}`, {
+				void mw.notify(`Twinkle.stub：未知模式 ${Twinkle.stub.mode}`, {
 					type: 'warn',
 					tag: 'twinklestub',
 				});
@@ -421,3 +421,5 @@
 	};
 	Twinkle.addInitCallback(Twinkle.stub, 'stub');
 })(jQuery);
+
+export {};

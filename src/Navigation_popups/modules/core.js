@@ -1,9 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import {initMwApi} from 'ext.gadget.Util';
-import {popupStrings} from './string';
+import {api} from './api';
+import {message} from './string';
 
-export const popups = () => {
+const popups = () => {
 	// STARTFILE: main.js
 	// Fix later
 	// Globals
@@ -141,9 +141,7 @@ export const popups = () => {
 		a.hasPopup = false;
 	};
 	const removeTitle = (a) => {
-		if (!a.originalTitle) {
-			a.originalTitle = a.title;
-		}
+		a.originalTitle ||= a.title;
 		a.title = '';
 	};
 	const restoreTitle = (a) => {
@@ -1213,7 +1211,7 @@ export const popups = () => {
 				document.title = `(${document.title})`;
 				button.click();
 			} else {
-				mw.notify(
+				void mw.notify(
 					tprintf('Could not find button %s. Please check the settings in your javascript file.', [btn]),
 					{tag: 'popups', type: 'error'}
 				);
@@ -1424,9 +1422,7 @@ export const popups = () => {
 		}
 		d.id = id;
 		d.setTarget();
-		if (!onfailure) {
-			onfailure = 2;
-		}
+		onfailure ||= 2;
 		const f = function () {
 			if (d.getReadyState() === 4) {
 				delete pg.misc.downloadsInProgress[this.id];
@@ -1556,7 +1552,7 @@ export const popups = () => {
 				articles: `${pg.wiki.articlePath}/`,
 				// Only used for Insta previews with images. (not in popups)
 				math: '/math/',
-				images: 'https://youshou.wiki/images/',
+				images: 'https://tu.zhongwen.wiki/images/qiuwenbaike/zh/',
 				images_fallback: '//wm.zhongwen.wiki/commons/',
 			},
 			locale: {
@@ -1568,7 +1564,7 @@ export const popups = () => {
 			},
 		};
 		// options with default values or backreferences
-		(_b = Insta.conf.user).name || (_b.name = 'Youshou Archives contributors');
+		(_b = Insta.conf.user).name || (_b.name = 'Qiuwen Baike contributors');
 		Insta.conf.user.signature = `[[${Insta.conf.locale.user}:${Insta.conf.user.name}|${Insta.conf.user.name}]]`;
 		// define constants
 		Insta.BLOCK_IMAGE = new RegExp(
@@ -2713,9 +2709,7 @@ export const popups = () => {
 			this.setUtf(this.value + x);
 		}
 		urlString(x) {
-			if (!x) {
-				x = {};
-			}
+			x ||= {};
 			let v = this.toString(true);
 			if (!x.omitAnchor && this.anchor) {
 				v += `#${this.urlAnchor()}`;
@@ -3409,9 +3403,7 @@ export const popups = () => {
 	};
 	const emptySpanHTML = function emptySpanHTML(name, id, tag, classname) {
 		tag ||= 'span';
-		if (!classname) {
-			classname = emptySpanHTML.classAliases[name];
-		}
+		classname ||= emptySpanHTML.classAliases[name];
 		classname ||= name;
 		if (name === getValueOf('popupDragHandle')) {
 			classname += ' popupDragHandle';
@@ -3433,9 +3425,7 @@ export const popups = () => {
 		);
 	};
 	const popTipsSoonFn = (id, when, popData) => {
-		if (!when) {
-			when = 250;
-		}
+		when ||= 250;
 		const popTips = () => {
 			setupTooltips(document.querySelector(`#${id}`), false, true, popData);
 		};
@@ -3630,7 +3620,7 @@ export const popups = () => {
 			const sb = subopening ? Previewmaker.makeRegexp(subopening, '^') : null;
 			const sc = subclosing ? Previewmaker.makeRegexp(subclosing, '^') : cl;
 			if (!op || !cl) {
-				mw.notify('Navigation Popups error: op or cl is null! something is wrong.', {
+				void mw.notify('Navigation Popups error: op or cl is null! something is wrong.', {
 					tag: 'popups',
 					type: 'error',
 				});
@@ -3656,9 +3646,7 @@ export const popups = () => {
 					depth++;
 					removal = sb.exec(txt)[0].length;
 				}
-				if (!removal) {
-					removal = 1;
-				}
+				removal ||= 1;
 				txt = txt.slice(Math.max(0, removal));
 				if (depth === 0) {
 					break;
@@ -4022,7 +4010,7 @@ export const popups = () => {
 		const art = new Title(article).urlString();
 		let url = `${pg.wiki.apiwikibase}?format=json&formatversion=2&action=query&`;
 		let htmlGenerator = () => /* a, d */ {
-			mw.notify('invalid html generator', {tag: 'popups', type: 'error'});
+			void mw.notify('invalid html generator', {tag: 'popups', type: 'error'});
 		};
 		let usernameart = '';
 		switch (queryType) {
@@ -4670,7 +4658,7 @@ export const popups = () => {
 	// load image of type Title.
 	const loadImage = (image, navpop) => {
 		if (typeof image.stripNamespace !== 'function') {
-			mw.notify('loadImages bad', {tag: 'popups', type: 'error'});
+			void mw.notify('loadImages bad', {tag: 'popups', type: 'error'});
 		}
 		// API call to retrieve image info.
 		if (!getValueOf('popupImages')) {
@@ -4755,12 +4743,12 @@ export const popups = () => {
 	const toggleSize = function toggleSize() {
 		const self = this;
 		if (!self) {
-			mw.notify('self is null :/', {tag: 'popups', type: 'error'});
+			void mw.notify('self is null :/', {tag: 'popups', type: 'error'});
 			return;
 		}
 		const img = self.firstChild;
 		if (!img) {
-			mw.notify('img is null :/', {tag: 'popups', type: 'error'});
+			void mw.notify('img is null :/', {tag: 'popups', type: 'error'});
 			return;
 		}
 		img.style.width = !img.style.width || img.style.width === '' ? '100%' : '';
@@ -5551,9 +5539,7 @@ export const popups = () => {
 			if (handleName) {
 				dragHandle = document.querySelector(`#${handleName}`);
 			}
-			if (!dragHandle) {
-				dragHandle = this.mainDiv;
-			}
+			dragHandle ||= this.mainDiv;
 			const self = this;
 			drag.endHook = (x, y) => {
 				Navpopup.tracker.dirty = true;
@@ -5811,7 +5797,7 @@ export const popups = () => {
 	const diffBugAlert = function diffBugAlert(word) {
 		if (!diffBugAlert.list[word]) {
 			diffBugAlert.list[word] = 1;
-			mw.notify(`Bad word: ${word}\n\nPlease report this bug.`, {tag: 'popups', type: 'error'});
+			void mw.notify(`Bad word: ${word}\n\nPlease report this bug.`, {tag: 'popups', type: 'error'});
 		}
 	};
 	diffBugAlert.list = {};
@@ -5821,9 +5807,7 @@ export const popups = () => {
 			if (jsReservedProperties.test(src[i])) {
 				src[i] += '<!-- -->';
 			}
-			if (!ret[src[i]]) {
-				ret[src[i]] = [];
-			}
+			ret[src[i]] ??= [];
 			try {
 				ret[src[i]].push(i);
 			} catch {
@@ -6071,8 +6055,8 @@ export const popups = () => {
 	};
 	const getMwApi = () => {
 		if (!pg.api.client) {
-			pg.api.userAgent = `Navigation popups/1.0 (${mw.config.get('wgWikiID')})`;
-			pg.api.client = initMwApi(pg.api.userAgent);
+			pg.api.userAgent = 'Navigation popups/1.0';
+			pg.api.client = api;
 		}
 		return pg.api.client;
 	};
@@ -6647,7 +6631,7 @@ export const popups = () => {
 	// ENDFILE: navlinks.js
 	// STARTFILE: shortcutkeys.js
 	const popupHandleKeypress = function popupHandleKeypress(evt) {
-		const keyCode = window.event ? window.event.keyCode : evt.keyCode ?? evt.which;
+		const keyCode = window.event ? window.event.keyCode : (evt.keyCode ?? evt.which);
 		if (!keyCode || !pg.current.link || !pg.current.link.navpopup) {
 			return;
 		}
@@ -6836,7 +6820,7 @@ export const popups = () => {
 								// TODO: Update current page and other already constructed popups
 							})
 							.fail(() => {
-								mw.notify(popupString('Could not marked this edit as patrolled'), {
+								void mw.notify(popupString('Could not marked this edit as patrolled'), {
 									tag: 'popups',
 									type: 'error',
 								});
@@ -7171,14 +7155,17 @@ export const popups = () => {
 	};
 	const processLastContribInfo = (info, stuff) => {
 		if (!info.edits || info.edits.length === 0) {
-			mw.notify('Popups: an odd thing happened. Please retry.', {tag: 'popups', type: 'error'});
+			void mw.notify('Popups: an odd thing happened. Please retry.', {tag: 'popups', type: 'error'});
 			return;
 		}
 		if (!info.firstNewEditor) {
-			mw.notify(tprintf('Only found one editor: %s made %s edits', [info.edits[0].editor, info.edits.length]), {
-				tag: 'popups',
-				type: 'error',
-			});
+			void mw.notify(
+				tprintf('Only found one editor: %s made %s edits', [info.edits[0].editor, info.edits.length]),
+				{
+					tag: 'popups',
+					type: 'error',
+				}
+			);
 			return;
 		}
 		const newUrl = `${pg.wiki.titlebase + new Title(stuff.page).urlString()}&diff=cur&oldid=${
@@ -7193,12 +7180,12 @@ export const popups = () => {
 	};
 	const processDiffSinceMyEdit = (info, stuff) => {
 		if (!info.edits || info.edits.length === 0) {
-			mw.notify('Popups: something fishy happened. Please try again.', {tag: 'popups', type: 'error'});
+			void mw.notify('Popups: something fishy happened. Please try again.', {tag: 'popups', type: 'error'});
 			return;
 		}
 		const friendlyName = stuff.page.split('_').join(' ');
 		if (!info.myLastEdit) {
-			mw.notify(
+			void mw.notify(
 				tprintf("Couldn't find an edit by %s\nin the last %s edits to\n%s", [
 					info.userName,
 					getValueOf('popupHistoryLimit'),
@@ -7209,7 +7196,7 @@ export const popups = () => {
 			return;
 		}
 		if (info.myLastEdit.index === 0) {
-			mw.notify(tprintf('%s seems to be the last editor to the page %s', [info.userName, friendlyName]), {
+			void mw.notify(tprintf('%s seems to be the last editor to the page %s', [info.userName, friendlyName]), {
 				type: 'error',
 			});
 			return;
@@ -7291,7 +7278,7 @@ export const popups = () => {
 		// Messages that can be used here:
 		// * see string.js
 		// * for more information
-		mw.notify(mw.message(messageName, title).parseDom(), {tag: 'popups'});
+		void mw.notify(mw.message(messageName, title).parseDom(), {tag: 'popups'});
 	};
 	const magicHistoryLink = (l) => {
 		// FIXME use onclick change href trick to sort this out instead of window.open
@@ -7355,9 +7342,7 @@ export const popups = () => {
 			return null;
 		}
 		const base = `${pg.wiki.titlebase + mw.config.get('wgFormattedNamespaces')[pg.nsSpecialId]}:${l.specialpage}`;
-		if (l.sep === undefined || l.sep === null) {
-			l.sep = '&target=';
-		}
+		l.sep ??= '&target=';
 		let article = l.article.urlString({
 			keepSpaces: l.specialpage === 'Search',
 		});
@@ -7707,9 +7692,7 @@ export const popups = () => {
 	// options
 	// check for existing value, else use default
 	const defaultize = (x) => {
-		if (pg.option[x] === null || pg.option[x] === undefined) {
-			pg.option[x] = window[x] === undefined ? pg.optionDefault[x] : window[x];
-		}
+		pg.option[x] ??= window[x] === undefined ? pg.optionDefault[x] : window[x];
 	};
 	const newOption = (x, def) => {
 		pg.optionDefault[x] = def;
@@ -8118,8 +8101,8 @@ export const popups = () => {
 		autoedit_version: 'np20140416',
 	};
 	const popupString = (str) => {
-		if (popupStrings !== undefined && popupStrings && popupStrings[str]) {
-			return popupStrings[str];
+		if (message !== undefined && message && message[str]) {
+			return message[str];
 		}
 		if (pg.string[str]) {
 			return pg.string[str];
@@ -8155,7 +8138,7 @@ export const popups = () => {
 				return;
 			}
 			const registerHooksForVisibleNavpops = () => {
-				for (let i = 0; pg.current.links && i < pg.current.links.length; ++i) {
+				for (let i = 0; pg.current.links && i < pg.current.links.length; i++) {
 					const navpop = pg.current.links[i].navpopup;
 					if (!navpop || !navpop.isVisible()) {
 						continue;
@@ -8180,3 +8163,5 @@ export const popups = () => {
 	})();
 	// ENDFILE: run.js
 };
+
+export {popups};

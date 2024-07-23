@@ -16,7 +16,7 @@ const elementWrap = (spanClass: 'green' | 'orange', innerElement: ReactElement) 
 
 const indicator = (icon: 'globe' | 'helpNotice', indicatorText: string) => {
 	const ipLocationDesc: string = getMessage('Location') + getMessage(':');
-	const text: string = icon === 'globe' ? ipLocationDesc + indicatorText : indicatorText ?? '';
+	const text: string = icon === 'globe' ? ipLocationDesc + indicatorText : (indicatorText ?? '');
 
 	return (
 		<>

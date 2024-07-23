@@ -214,7 +214,7 @@ const openSearchInNewTab = ($body: JQuery<HTMLBodyElement>): void => {
 		.find('#search,#searchbox,#searchform,.search-types,#search-types')
 		.on('keydown keyup mousedown', (event: JQuery.TriggeredEvent<HTMLElement>): void => {
 			const {ctrlKey, metaKey, target} = event;
-			$(target).attr('target', ctrlKey ?? metaKey ? '_blank' : '');
+			$(target).attr('target', (ctrlKey ?? metaKey) ? '_blank' : '');
 		});
 };
 

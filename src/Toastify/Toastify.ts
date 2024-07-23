@@ -25,12 +25,8 @@ const toastify: ToastifyWithHideToast = (options, type) => {
 	// eslint-disable-next-line mediawiki/class-doc
 	options.className = className;
 
-	if (!options.gravity) {
-		options.gravity = 'bottom';
-	}
-	if (!options.position) {
-		options.position = 'center';
-	}
+	options.gravity ||= 'bottom';
+	options.position ||= 'center';
 
 	const instance = Toastify(options);
 	instance.showToast();

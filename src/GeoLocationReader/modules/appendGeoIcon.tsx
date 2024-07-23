@@ -35,7 +35,7 @@ const appendGeoIcon = async (): Promise<void> => {
 		const location: StoreGeoInfo['countryOrArea'] = country ?? countryOrArea ?? '';
 		const countryOrAreaName: string =
 			getCountryOrAreaName(location as keyof CountryOrAreaNameList) ?? getMessage('Unknown');
-		const regionName: string = location === 'CN' ? getRegionName(region as keyof RegionNameList) ?? '' : '';
+		const regionName: string = location === 'CN' ? (getRegionName(region as keyof RegionNameList) ?? '') : '';
 
 		appendIcon({
 			icon: 'globe',

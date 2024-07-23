@@ -83,9 +83,7 @@ export const toolsRedirect_courtesy_and_art_names = (): void => {
 			const previousNode = element.previousSibling;
 			if (previousNode && prefixRegex.test(previousNode.textContent)) {
 				const name = $(element).text().trim();
-				if (!surname) {
-					surname = findSurname(pagename);
-				}
+				surname ||= findSurname(pagename);
 				titles.push(surname + name);
 			}
 		});

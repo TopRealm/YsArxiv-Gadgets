@@ -1298,9 +1298,7 @@
 				summary =
 					messageData.summary || (messageData[params.main_group] && messageData[params.main_group].summary);
 				// Not in Twinkle.warn.messages, assume custom template
-				if (!summary) {
-					summary = customProcess(params.sub_group);
-				}
+				summary ||= customProcess(params.sub_group);
 				if (messageData.suppressArticleInSummary !== true && params.article) {
 					if (params.sub_group === 'uw-aiv') {
 						// these templates require a username
