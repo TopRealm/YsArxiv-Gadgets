@@ -1,0 +1,152 @@
+@import (reference) '../variables.less';
+
+.infobox,
+.vertical-navbox {
+	position: relative;
+	display: flex;
+	width: 100% !important;
+	max-width: 100% !important;
+	flex: 1 1 100%;
+	flex-flow: column nowrap;
+	padding: 0.2em;
+	border: 1px solid #a2a9b1;
+	margin: auto 0 2em;
+	background-color: #f8f9fa;
+	color: #000;
+	float: none !important;
+	font-size: 90%;
+	box-sizing: border-box;
+
+	@media (min-width: 768px) {
+		width: auto;
+		max-width: 320px !important;
+		margin: 0 0 2em 2em !important;
+		clear: right !important;
+		float: right !important;
+	}
+
+	td,
+	th {
+		padding: 0.4em 0.6em;
+		border: 0;
+		vertical-align: top;
+	}
+
+	caption {
+		padding: 10px 10px 0;
+		font-size: larger;
+		text-align: center !important;
+	}
+
+	tbody > tr > td,
+	tbody > tr > th {
+		flex: 1 0;
+	}
+
+	tbody > tr > td img,
+	tbody > tr > th img {
+		max-width: 100% !important;
+		object-fit: contain;
+	}
+
+	td:only-child,
+	th:only-child {
+		width: 100%;
+		text-align: center;
+	}
+
+	tr:last-child th,
+	tr:last-child td {
+		border: 0;
+	}
+
+	> tbody,
+	> caption {
+		display: flex;
+		flex-flow: column nowrap;
+	}
+
+	> tbody > tr {
+		display: flex;
+		min-width: 100%;
+		flex-flow: row wrap;
+	}
+
+	&.bordered {
+		border-collapse: collapse;
+
+		td,
+		th {
+			border: 1px solid #a2a9b1;
+		}
+
+		.borderless td,
+		.borderless th {
+			border: 0;
+		}
+
+		tr:last-child th,
+		tr:last-child td {
+			border: 1px solid #a2a9b1;
+		}
+
+		.mergedtoprow td,
+		.mergedtoprow th {
+			border: 0;
+			border-top: 1px solid #a2a9b1;
+			border-right: 1px solid #a2a9b1;
+		}
+
+		.mergedrow td,
+		.mergedrow th {
+			border: 0;
+			border-right: 1px solid #a2a9b1;
+		}
+	}
+
+	&.sisterproject {
+		width: 20em;
+		font-size: 90%;
+	}
+
+	&.geography {
+		border-collapse: collapse;
+		font-size: 90%;
+		line-height: 1.2em;
+		text-align: left;
+
+		td,
+		th {
+			padding: 0.4em 0.6em;
+		}
+
+		.mergedtoprow td,
+		.mergedtoprow th {
+			padding: 0.4em 0.6em 0.2em;
+		}
+
+		.mergedrow td,
+		.mergedrow th {
+			padding: 0 0.6em 0.2em;
+		}
+
+		.mergedbottomrow td,
+		.mergedbottomrow th {
+			padding: 0 0.6em 0.4em;
+		}
+	}
+}
+
+.mw-content-ltr {
+	.infobox,
+	.vertical-navbox {
+		text-align: left;
+	}
+}
+
+.mw-content-rtl {
+	.infobox,
+	.vertical-navbox {
+		text-align: right;
+	}
+}
