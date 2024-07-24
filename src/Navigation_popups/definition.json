@@ -10,6 +10,5 @@
 		"mediawiki.user",
 		"mediawiki.util",
 		"user.options"
-	],
-	"peers": ["Navigation_popups-pagestyles"]
+	]
 }

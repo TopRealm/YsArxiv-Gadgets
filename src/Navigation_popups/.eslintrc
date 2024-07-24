@@ -26,7 +26,7 @@
 	"globals": {
 		"log": "readonly",
 		"errlog": "readonly",
-		"popupStrings": "readonly",
+		"message": "readonly",
 		"wgULS": "readonly"
 	}
 }
