@@ -88,7 +88,7 @@ import {generateArray} from 'ext.gadget.Util';
 	 * @returns {boolean}
 	 */
 	Morebits.userIsInGroup = (group) => {
-		return mw.config.get('wgUserGroups').includes(group) || mw.config.get('wgGlobalGroups').includes(group);
+		return mw.config.get('wgUserGroups').includes(group);
 	};
 	/**
 	 * Hardcodes whether the user is a sysop, used a lot.
