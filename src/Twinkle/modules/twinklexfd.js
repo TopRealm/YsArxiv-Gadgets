@@ -802,3 +802,5 @@
 	};
 	Twinkle.addInitCallback(Twinkle.xfd, 'xfd');
 })();
+
+export {};

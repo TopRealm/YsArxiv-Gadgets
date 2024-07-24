@@ -917,3 +917,5 @@
 	};
 	Twinkle.addInitCallback(Twinkle.fluff, 'fluff');
 })(jQuery);
+
+export {};

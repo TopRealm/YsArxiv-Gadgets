@@ -8,7 +8,7 @@
 	// Wrap with anonymous function
 	// Check if account is experienced enough to use Twinkle
 	if (!Morebits.userIsInGroup('autoconfirmed') && !Morebits.userIsInGroup('confirmed')) {
-		console.warn('[Twinkle]非确认用户或自动确认用户，Twinkle不会运行。');
+		console.warn('[Twinkle] 非确认用户或自动确认用户，Twinkle不会运行。');
 		return;
 	}
 	/**
@@ -540,3 +540,5 @@
 		$checkbox.next().prepend([link, ' ']);
 	};
 })(jQuery);
+
+export {};

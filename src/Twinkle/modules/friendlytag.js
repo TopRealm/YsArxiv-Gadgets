@@ -2320,3 +2320,5 @@
 	};
 	Twinkle.addInitCallback(Twinkle.tag, 'tag');
 })(jQuery);
+
+export {};

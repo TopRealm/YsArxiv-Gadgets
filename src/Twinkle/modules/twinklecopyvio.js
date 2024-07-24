@@ -233,3 +233,5 @@
 	};
 	Twinkle.addInitCallback(Twinkle.copyvio, 'copyvio');
 })();
+
+export {};

@@ -79,7 +79,7 @@ const DEFINITION_SECTION_MAP = {
  *
  * The `User-Agent` header used when deploying
  */
-const DEPLOY_USER_AGENT = 'YsArchives/Gadgets (https://github.com/TopRealm/YsArchives-Gadgets)' satisfies string;
+const DEPLOY_USER_AGENT = 'YsArchives-Gadgets/1.0 (https://github.com/TopRealm/YsArchives-Gadgets)' satisfies string;
 
 /**
  * 启用此选项以自动转换`MediaWiki:Gadget-${gadgetName}`和`MediaWiki:Gadget-section-${DEFAULT_DEFINITION.section}`页面的语言变体

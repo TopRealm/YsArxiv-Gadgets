@@ -1794,3 +1794,5 @@
 	};
 	Twinkle.addInitCallback(Twinkle.speedy, 'speedy');
 })(jQuery);
+
+export {};

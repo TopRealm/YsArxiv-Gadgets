@@ -3,12 +3,12 @@
 /*! Twinkle.js - twinkle.css */
 
 #p-twinkle {
-	/**
-	 * Explicitly set width of TW menu so that we can use a hidden peer gadget
-	 * to add space where the TW menu would go before it loads.
-	 * See twinkle-pagestyles.css
-	 */
 	.skin-vector .vector-menu-dropdown & {
+		/**
+		 * Explicitly set width of TW menu so that we can use a hidden peer gadget
+		 * to add space where the TW menu would go before it loads.
+		 * See twinkle-pagestyles.css
+		 */
 		width: 3.24em;
 	}
 
@@ -18,22 +18,18 @@
 			padding: 0.75em 1.25em;
 			margin: 0;
 			color: #54595d;
-			font-family: @sans-serif-zh-hans, sans-serif, @emoji-font;
-			font-size: 0.8em;
+			font-family: var(--fonts-sans, sans-serif);
+			font-size: 0.875rem;
 			font-weight: normal;
 			letter-spacing: 0.05em;
-
-			html:lang(zh-hant) & {
-				font-family: @sans-serif-zh-hant, sans-serif, @emoji-font;
-			}
 		}
 	}
 
-	/**
-	 * In skin vector-2022, open the TW menu when mouse hovers over it.
-	 * Credit to Nardog for this fix.
-	 */
 	&:hover > .vector-menu-content {
+		/**
+		 * In skin vector-2022, open the TW menu when mouse hovers over it.
+		 * Credit to Nardog for this fix.
+		 */
 		height: auto;
 		opacity: 1;
 		visibility: visible;
