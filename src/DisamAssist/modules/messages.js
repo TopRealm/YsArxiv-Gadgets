@@ -1,4 +1,4 @@
-export const txt = {
+const messages = {
 	start: '为链接消歧义',
 	startMain: '为链至主条目的链接消歧义',
 	startSame: '为链至消歧义页的链接消歧义',
@@ -20,7 +20,7 @@ export const txt = {
 	pendingEditBox: 'DisamAssist正在储存您的编辑（$1）。',
 	pendingEditBoxTimeEstimation: '$1；剩余时间：$2',
 	pendingEditBoxLimited:
-		'在所有更改保存前，请不要关闭页面；你可以在另一个页面编辑有兽档案馆，但是请勿同时使用多个DisamAssist。',
+		'在所有更改保存前，请不要关闭页面；你可以在另一个页面编辑求闻百科，但是请勿同时使用多个DisamAssist。',
 	error: '错误：$1',
 	fetchRedirectsError: '获取重定向失败："$1".',
 	getBacklinksError: '下载反向链接失败："$1".',
@@ -32,7 +32,7 @@ export const txt = {
 	editInProgress: 'DisamAssist正在进行编辑。若您将本分页关闭，可能会丧失您的编辑。',
 	ellipsis: '……',
 	notifyCharacter: '✔',
-	summary: '使用[[MediaWiki:Gadget-DisamAssist.js|DisamAssist]]清理[[LIB:DAB|消歧义]]链接：[[$1]]（$2）。',
+	summary: '使用[[MediaWiki:Gadget-DisamAssist.js|DisamAssist]]清理[[QW:DAB|消歧义]]链接：[[$1]]（$2）。',
 	summaryChanged: '改链接至[[$1]]',
 	summaryOmitted: '链接已跳过',
 	summaryRemoved: '链接已移除',
@@ -41,3 +41,5 @@ export const txt = {
 	summarySeparator: '; ',
 	redirectSummary: '使用[[MediaWiki:Gadget-DisamAssist.js|DisamAssist]]创建目标为[[$1]]的重定向。',
 };
+
+export {messages};

@@ -6,7 +6,7 @@ import {windowManager} from './modules/initWindowManager';
 
 let isInit: boolean = false;
 
-mw.hook('wikipage.content').add(($content): void => {
+mw.hook('wikipage.content').add(function noteTA($content): void {
 	const $body: JQuery<HTMLBodyElement> = $content.parents('body');
 
 	if (!isInit) {

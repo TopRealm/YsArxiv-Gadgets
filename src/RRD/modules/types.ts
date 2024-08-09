@@ -1,17 +1,17 @@
-interface rrdConfigCheckBoxes {
+interface RrdConfigCheckBoxes {
 	rrdHideContent?: boolean;
 	rrdHideUsername?: boolean;
 	rrdHideSummary?: boolean;
 }
 
-interface rrdConfigOthers {
-	rrdReason?: string | undefined;
-	rrdOtherReasons?: string | undefined;
+interface RrdConfigOthers {
+	rrdReason?: string;
+	rrdOtherReasons?: string;
 }
 
-interface rrdConfig {
-	checkboxes: rrdConfigCheckBoxes;
-	others: rrdConfigOthers;
+interface RrdConfig {
+	checkboxes: RrdConfigCheckBoxes;
+	others: RrdConfigOthers;
 }
 
-export type {rrdConfigCheckBoxes, rrdConfigOthers, rrdConfig};
+export type {RrdConfig};

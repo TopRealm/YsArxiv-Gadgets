@@ -1,4 +1,4 @@
-import {PORTLET_CLASS, WG_SKIN} from './constant';
+import * as OPTIONS from '../options.json';
 
 let portletId: string | undefined;
 
@@ -15,7 +15,9 @@ const initGlobalMethods = ($body: JQuery<HTMLBodyElement>): typeof globalMethods
 		},
 	};
 
-	if (WG_SKIN === 'vector') {
+	const {skin} = mw.config.get();
+
+	if (skin === 'vector') {
 		portletId = 'p-noteTA';
 
 		let $noteTATab: JQuery | undefined;
@@ -43,11 +45,11 @@ const initGlobalMethods = ($body: JQuery<HTMLBodyElement>): typeof globalMethods
 				mw.util.hidePortlet(portletId);
 			}
 		};
-	} else if (WG_SKIN === 'vector-2022') {
+	} else if (skin === 'vector-2022') {
 		portletId = 'p-associated-pages';
 
 		globalMethods.deInit = (): void => {
-			$body.find(PORTLET_CLASS).remove();
+			$body.find(`.${OPTIONS.portletClass}`).remove();
 		};
 	}
 

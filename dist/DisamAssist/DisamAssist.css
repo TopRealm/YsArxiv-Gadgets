@@ -1,0 +1,90 @@
+/**
+ * SPDX-License-Identifier: CC-BY-SA-4.0
+ * _addText: '{{Gadget Header|license=CC-BY-SA-4.0}}'
+ *
+ * @base {@link https://zh.wikipedia.org/wiki/User:Peacearth/DisamAssist.js}
+ * @base {@link https://es.wikipedia.org/wiki/Usuario:Qwertyytrewqqwerty/DisamAssist.js}
+ * @source {@link https://github.com/TopRealm/YsArchives-Gadgets/tree/master/src/DisamAssist}
+ * @license CC-BY-SA-4.0 {@link https://youshou.wiki/wiki/H:CC-BY-SA-4.0}
+ */
+/**
+ * +------------------------------------------------------------+
+ * |            === WARNING: GLOBAL GADGET FILE ===             |
+ * +------------------------------------------------------------+
+ * |       All changes should be made in the repository,        |
+ * |                otherwise they will be lost.                |
+ * +------------------------------------------------------------+
+ * |        Changes to this page may affect many users.         |
+ * | Please discuss changes by opening an issue before editing. |
+ * +------------------------------------------------------------+
+ */
+/* <nowiki> */
+
+/* src/DisamAssist/DisamAssist.less */
+.disamassist-box {
+  overflow: hidden;
+  width: 95%;
+  padding: 5px;
+  border: 1px solid;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+.disamassist-mainbox {
+  border-color: #36c;
+  background: #b2b2ff;
+}
+.disamassist-pendingeditbox {
+  border-color: #00f0ff;
+  background: #c5fcff;
+}
+.disamassist-errorbox {
+  border-color: #b32424;
+  background: #ffb2b2;
+}
+.disamassist-errorbutton {
+  float: right;
+}
+.disamassist-pagetitleline {
+  font-weight: bold;
+}
+.disamassist-editcounter {
+  float: right;
+  font-size: 0.85rem;
+}
+.disamassist-subtitle {
+  font-size: 0.875rem;
+}
+.disamassist-button {
+  padding: 0 1px;
+  font-size: 0.9rem;
+}
+.disamassist-allbuttons {
+  clear: both;
+}
+.disamassist-leftbuttons {
+  float: left;
+}
+.disamassist-rightbuttons {
+  float: right;
+}
+.disamassist-optionmarker {
+  color: #00f !important;
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: normal;
+}
+.disamassist-curroptionmarker {
+  font-weight: bold;
+}
+.disamassist-inclink {
+  color: #f00;
+  font-weight: bold;
+}
+.disamassist-context {
+  font-family: monospace;
+  font-family: var(--fonts-monospace, monospace);
+}
+
+/* </nowiki> */
+
+/*# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vLi4vc3JjL0Rpc2FtQXNzaXN0L0Rpc2FtQXNzaXN0Lmxlc3MiXSwKICAic291cmNlc0NvbnRlbnQiOiBbIi5kaXNhbWFzc2lzdC1ib3gge1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICB3aWR0aDogOTUlO1xuICBwYWRkaW5nOiA1cHg7XG4gIGJvcmRlcjogMXB4IHNvbGlkO1xuICBtYXJnaW46IDAgYXV0bztcbiAgbWFyZ2luLWJvdHRvbTogNXB4O1xufVxuLmRpc2FtYXNzaXN0LW1haW5ib3gge1xuICBib3JkZXItY29sb3I6ICMzNmM7XG4gIGJhY2tncm91bmQ6ICNiMmIyZmY7XG59XG4uZGlzYW1hc3Npc3QtcGVuZGluZ2VkaXRib3gge1xuICBib3JkZXItY29sb3I6ICMwMGYwZmY7XG4gIGJhY2tncm91bmQ6ICNjNWZjZmY7XG59XG4uZGlzYW1hc3Npc3QtZXJyb3Jib3gge1xuICBib3JkZXItY29sb3I6ICNiMzI0MjQ7XG4gIGJhY2tncm91bmQ6ICNmZmIyYjI7XG59XG4uZGlzYW1hc3Npc3QtZXJyb3JidXR0b24ge1xuICBmbG9hdDogcmlnaHQ7XG59XG4uZGlzYW1hc3Npc3QtcGFnZXRpdGxlbGluZSB7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuLmRpc2FtYXNzaXN0LWVkaXRjb3VudGVyIHtcbiAgZmxvYXQ6IHJpZ2h0O1xuICBmb250LXNpemU6IDAuODVyZW07XG59XG4uZGlzYW1hc3Npc3Qtc3VidGl0bGUge1xuICBmb250LXNpemU6IDAuODc1cmVtO1xufVxuLmRpc2FtYXNzaXN0LWJ1dHRvbiB7XG4gIHBhZGRpbmc6IDAgMXB4O1xuICBmb250LXNpemU6IDAuOXJlbTtcbn1cbi5kaXNhbWFzc2lzdC1hbGxidXR0b25zIHtcbiAgY2xlYXI6IGJvdGg7XG59XG4uZGlzYW1hc3Npc3QtbGVmdGJ1dHRvbnMge1xuICBmbG9hdDogbGVmdDtcbn1cbi5kaXNhbWFzc2lzdC1yaWdodGJ1dHRvbnMge1xuICBmbG9hdDogcmlnaHQ7XG59XG4uZGlzYW1hc3Npc3Qtb3B0aW9ubWFya2VyIHtcbiAgY29sb3I6ICMwMGYgIWltcG9ydGFudDtcbiAgZm9udC1zaXplOiAwLjg1cmVtO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG4gIGZvbnQtd2VpZ2h0OiBub3JtYWw7XG59XG4uZGlzYW1hc3Npc3QtY3Vycm9wdGlvbm1hcmtlciB7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuLmRpc2FtYXNzaXN0LWluY2xpbmsge1xuICBjb2xvcjogI2YwMDtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG59XG4uZGlzYW1hc3Npc3QtY29udGV4dCB7XG4gIGZvbnQtZmFtaWx5OiBtb25vc3BhY2U7XG4gIGZvbnQtZmFtaWx5OiB2YXIoLS1mb250cy1tb25vc3BhY2UsIG1vbm9zcGFjZSk7XG59XG4iXSwKICAibWFwcGluZ3MiOiAiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLENBQUM7QUFDQyxZQUFVO0FBQ1YsU0FBTztBQUNQLFdBQVM7QUFDVCxVQUFRLElBQUk7QUFDWixVQUFRLEVBQUU7QUFDVixpQkFBZTtBQUNqQjtBQUNBLENBQUM7QUFDQyxnQkFBYztBQUNkLGNBQVk7QUFDZDtBQUNBLENBQUM7QUFDQyxnQkFBYztBQUNkLGNBQVk7QUFDZDtBQUNBLENBQUM7QUFDQyxnQkFBYztBQUNkLGNBQVk7QUFDZDtBQUNBLENBQUM7QUFDQyxTQUFPO0FBQ1Q7QUFDQSxDQUFDO0FBQ0MsZUFBYTtBQUNmO0FBQ0EsQ0FBQztBQUNDLFNBQU87QUFDUCxhQUFXO0FBQ2I7QUFDQSxDQUFDO0FBQ0MsYUFBVztBQUNiO0FBQ0EsQ0FBQztBQUNDLFdBQVMsRUFBRTtBQUNYLGFBQVc7QUFDYjtBQUNBLENBQUM7QUFDQyxTQUFPO0FBQ1Q7QUFDQSxDQUFDO0FBQ0MsU0FBTztBQUNUO0FBQ0EsQ0FBQztBQUNDLFNBQU87QUFDVDtBQUNBLENBQUM7QUFDQyxTQUFPO0FBQ1AsYUFBVztBQUNYLGNBQVk7QUFDWixlQUFhO0FBQ2Y7QUFDQSxDQUFDO0FBQ0MsZUFBYTtBQUNmO0FBQ0EsQ0FBQztBQUNDLFNBQU87QUFDUCxlQUFhO0FBQ2Y7QUFDQSxDQUFDO0FBQ0MsZUFBYTtBQUNiLGVBQWEsSUFBSSxpQkFBaUIsRUFBRTtBQUN0QzsiLAogICJuYW1lcyI6IFtdCn0K */

@@ -1,7 +1,24 @@
-import './RRD.less';
-import {IS_LOG, IS_WG_HISTORY_ACTION} from './modules/constant';
-import {main} from './modules/core';
+import ReportButton from './components/ReportButton';
+import {getBody} from 'ext.gadget.Util';
+import {showDialog} from './modules/showDialog';
 
-if (IS_WG_HISTORY_ACTION || IS_LOG) {
-	$(main);
-}
+void getBody().then(function rrd($body: JQuery<HTMLBodyElement>): void {
+	const {wgAction, wgCanonicalSpecialPageName} = mw.config.get();
+
+	if (wgAction === 'history' || wgCanonicalSpecialPageName === 'Log') {
+		for (const element of $body.find(
+			[
+				'.historysubmit.mw-history-compareselectedversions-button',
+				'.editchangetags-log-submit.mw-log-editchangetags-button',
+			].join(',')
+		)) {
+			element.after(
+				ReportButton({
+					onClick: (): void => {
+						showDialog($body);
+					},
+				})
+			);
+		}
+	}
+});

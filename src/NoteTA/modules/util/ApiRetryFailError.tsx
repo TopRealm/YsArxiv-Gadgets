@@ -17,20 +17,13 @@ class ApiRetryFailError extends Error {
 			<div className="error">
 				<p>{getMessage('ApiRetryFailError').replace(/\$1/g, errorCount.toString())}</p>
 				<ol>
-					{this.errors.reduce(
-						(errors, error, index) => [
-							...errors,
-							<li key={index}>
-								{error
-									.split('\n')
-									.reduce(
-										(accumulator, line, number) => [...accumulator, <p key={number}>{line}</p>],
-										[] as React.ReactElement[]
-									)}
-							</li>,
-						],
-						[] as React.ReactElement[]
-					)}
+					{this.errors.map<React.ReactElement>((error, index) => (
+						<li key={index}>
+							{error.split('\n').map<React.ReactElement>((line, number) => (
+								<p key={number}>{line}</p>
+							))}
+						</li>
+					))}
 				</ol>
 			</div>
 		);

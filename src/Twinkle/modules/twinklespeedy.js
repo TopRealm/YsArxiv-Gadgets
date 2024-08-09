@@ -1,5 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+import {generateArray} from 'ext.gadget.Util';
+
 /*! Twinkle.js - twinklespeedy.js */
 (function twinklespeedy($) {
 	const $body = $('body');
@@ -97,7 +99,7 @@
 		const {dialog} = Twinkle.speedy;
 		dialog.setTitle(window.wgULS('选择快速删除理由', '選擇快速刪除理由'));
 		dialog.setScriptName('Twinkle');
-		dialog.addFooterLink(window.wgULS('快速删除条例', '快速刪除條例'), 'LIB:CSD');
+		dialog.addFooterLink(window.wgULS('快速删除方针', '快速刪除方針'), 'LIB:CSD');
 		dialog.addFooterLink(window.wgULS('速删设置', '速刪設定'), 'H:TW/PREF#speedy');
 		dialog.addFooterLink(window.wgULS('Twinkle帮助', 'Twinkle說明'), 'H:TW/DOC#speedy');
 		const form = new Morebits.quickForm(
@@ -357,7 +359,7 @@
 			});
 		}
 		const radioOrCheckbox = Twinkle.speedy.mode.isMultiple(mode) ? 'checkbox' : 'radio';
-		if (isSysopMode && !Twinkle.speedy.mode.isMultiple(mode)) {
+		if (isSysopMode) {
 			work_area.append({
 				type: 'header',
 				label: window.wgULS('自定义理由', '自訂理由'),
@@ -440,7 +442,7 @@
 					list: Twinkle.speedy.generateCsdList(Twinkle.speedy.categoryList, mode),
 				});
 				break;
-			case 302:
+			case 118:
 				// draft
 				work_area.append({
 					type: 'header',
@@ -470,10 +472,7 @@
 		// custom rationale lives under general criteria when tagging
 		let generalCriteria = Twinkle.speedy.generalList;
 		if (!Twinkle.speedy.mode.isSysop(mode)) {
-			generalCriteria = [
-				...Twinkle.speedy.customRationale,
-				...(Array.isArray(generalCriteria) ? generalCriteria : [generalCriteria]),
-			];
+			generalCriteria = [...Twinkle.speedy.customRationale, ...generateArray(generalCriteria)];
 		}
 		work_area.append({
 			type: 'header',
@@ -657,28 +656,12 @@
 				return null;
 			}
 			if (criterion.subgroup && !hasSubmitButton) {
-				if (Array.isArray(criterion.subgroup)) {
-					criterion.subgroup.push({
-						type: 'button',
-						name: 'submit',
-						label: isSysopMode
-							? window.wgULS('删除页面', '刪除頁面')
-							: window.wgULS('标记页面', '標記頁面'),
-						event: submitSubgroupHandler,
-					});
-				} else {
-					criterion.subgroup = [
-						criterion.subgroup,
-						{
-							type: 'button',
-							name: 'submit',
-							label: isSysopMode
-								? window.wgULS('删除页面', '刪除頁面')
-								: window.wgULS('标记页面', '標記頁面'),
-							event: submitSubgroupHandler,
-						},
-					];
-				}
+				criterion.subgroup = generateArray(criterion.subgroup, {
+					type: 'button',
+					name: 'submit',
+					label: isSysopMode ? window.wgULS('删除页面', '刪除頁面') : window.wgULS('标记页面', '標記頁面'),
+					event: submitSubgroupHandler,
+				});
 				// FIXME: does this do anything?
 				criterion.event = openSubgroupHandler;
 			}
@@ -718,7 +701,7 @@
 	];
 	Twinkle.speedy.fileList = [
 		{
-			label: 'F1：明显不符合本站著作权条例的文件',
+			label: 'F1：明显不符合本站著作权方针的文件',
 			value: 'f1',
 			tooltip:
 				'包括以下情况：1.上传后3天内仍然来源不明、著作权不明的文件。2.上传者宣称拥有，而在其他来源找到的文件。3.文件宣称由某作者依据某自由著作权协议发布，但找不到该自由协议的声明。4.其他明显侵权的文件，可附加侵权理由。',
@@ -1554,12 +1537,11 @@
 					if (form['csd.reason_1']) {
 						const dbrationale = form['csd.reason_1'].value;
 						if (!dbrationale || !dbrationale.trim()) {
-							mw.notify(window.wgULS('自定义理由：请指定理由。', '自訂理由：請指定理由。'), {
+							void mw.notify(window.wgULS('自定义理由：请指定理由。', '自訂理由：請指定理由。'), {
 								type: 'warn',
 								tag: 'twinklespeedy',
 							});
 							parameters = null;
-							false;
 							continue;
 						}
 						currentParams['1'] = dbrationale;
@@ -1569,7 +1551,7 @@
 					if (form['csd.a2_pagename']) {
 						const otherpage = form['csd.a2_pagename'].value;
 						if (!otherpage || !otherpage.trim()) {
-							mw.notify(
+							void mw.notify(
 								window.wgULS('CSD A2：请提供现有条目的名称。', 'CSD A2：請提供現有條目的名稱。'),
 								{
 									type: 'warn',
@@ -1577,7 +1559,6 @@
 								}
 							);
 							parameters = null;
-							false;
 							continue;
 						}
 						currentParams.pagename = otherpage;
@@ -1587,12 +1568,11 @@
 					if (form['csd.g4_pagename']) {
 						const pagename = form['csd.g4_pagename'].value;
 						if (!pagename || !pagename.trim()) {
-							mw.notify(window.wgULS('CSD G4：请提供页面名称。', 'CSD G4：請提供頁面名稱。'), {
+							void mw.notify(window.wgULS('CSD G4：请提供页面名称。', 'CSD G4：請提供頁面名稱。'), {
 								type: 'warn',
 								tag: 'twinklespeedy',
 							});
 							parameters = null;
-							false;
 							continue;
 						}
 						currentParams.pagename = pagename;
@@ -1602,7 +1582,7 @@
 					if (form['csd.f2_filename']) {
 						redimage = form['csd.f2_filename'].value;
 						if (!redimage || !redimage.trim()) {
-							mw.notify(
+							void mw.notify(
 								window.wgULS('CSD F2：请提供另一文件的名称。', 'CSD F2：請提供另一檔案的名稱。'),
 								{
 									type: 'warn',
@@ -1610,7 +1590,6 @@
 								}
 							);
 							parameters = null;
-							false;
 							continue;
 						}
 						currentParams.filename = redimage.replace(
@@ -1623,12 +1602,11 @@
 					if (form['csd.r1_type']) {
 						const redirtype = form['csd.r1_type'].value;
 						if (!redirtype) {
-							mw.notify(window.wgULS('CSD R1：请选择适用类型。', 'CSD R1：請選擇適用類別。'), {
+							void mw.notify(window.wgULS('CSD R1：请选择适用类型。', 'CSD R1：請選擇適用類別。'), {
 								type: 'warn',
 								tag: 'twinklespeedy',
 							});
 							parameters = null;
-							false;
 							continue;
 						}
 						currentParams['1'] = redirtype;
@@ -1638,12 +1616,11 @@
 					if (form['csd.r2_type']) {
 						const redirtype = form['csd.r2_type'].value;
 						if (!redirtype) {
-							mw.notify(window.wgULS('CSD R2：请选择适用类型。', 'CSD R2：請選擇適用類別。'), {
+							void mw.notify(window.wgULS('CSD R2：请选择适用类型。', 'CSD R2：請選擇適用類別。'), {
 								type: 'warn',
 								tag: 'twinklespeedy',
 							});
 							parameters = null;
-							false;
 							continue;
 						}
 						currentParams['1'] = redirtype;
@@ -1652,7 +1629,7 @@
 				default:
 					break;
 			}
-			parameters.push(currentParams);
+			parameters[parameters.length] = currentParams;
 		}
 		return parameters;
 	};
@@ -1668,7 +1645,7 @@
 	Twinkle.speedy.resolveCsdValues = (e) => {
 		const values = (e.target.form ?? e.target).getChecked('csd');
 		if (values.length === 0) {
-			mw.notify(window.wgULS('请选择一个理据！', '請選擇一個理據！'), {
+			void mw.notify(window.wgULS('请选择一个理据！', '請選擇一個理據！'), {
 				type: 'warn',
 				tag: 'twinklespeedy',
 			});
@@ -1734,14 +1711,13 @@
 		const normalizeds = [];
 		for (const value of values) {
 			const norm = Twinkle.speedy.normalizeHash[value];
-			normalizeds.push(norm);
+			normalizeds[normalizeds.length] = norm;
 		}
 		// analyse each criterion to determine whether to watch the page/notify the creator
 		let watchPage = false;
 		for (const norm of normalizeds) {
 			if (Twinkle.getPref('watchSpeedyPages').includes(norm)) {
 				watchPage = Twinkle.getPref('watchSpeedyExpiry');
-				false;
 				continue; // break
 			}
 		}
@@ -1751,7 +1727,6 @@
 			for (const norm of normalizeds) {
 				if (Twinkle.getPref('notifyUserOnSpeedyDeletionNomination').includes(norm)) {
 					notifyuser = true;
-					false;
 					continue; // break
 				}
 			}
@@ -1762,7 +1737,6 @@
 			for (const norm of normalizeds) {
 				if (!Twinkle.getPref('noLogOnSpeedyNomination').includes(norm)) {
 					csdlog = true;
-					false;
 					continue; // break
 				}
 			}

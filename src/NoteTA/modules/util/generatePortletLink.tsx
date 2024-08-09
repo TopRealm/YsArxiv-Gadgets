@@ -1,4 +1,4 @@
-import {PORTLET_CLASS} from '../constant';
+import * as OPTIONS from '../../options.json';
 import React from 'ext.gadget.React';
 import {portletId} from '../initGlobalMethods';
 
@@ -11,37 +11,21 @@ const generatePortletLink = (hash: string): JQuery | undefined => {
 	if (!portletLink) {
 		return;
 	}
-
-	const style = {
-		height: '85%',
-		padding: '1px 3px',
-	} as const satisfies React.CSSProperties;
+	portletLink.classList.add('ca-noteTA');
 
 	// The following classes are used here:
 	// * see constant.ts
 	// * for more information
-	const $portletLink: JQuery = $(portletLink).addClass(PORTLET_CLASS);
+	const $portletLink: JQuery = $(portletLink).addClass(OPTIONS.portletClass);
 	$portletLink
 		.find('a')
 		.empty()
 		.append(
 			<div>
-				<span
-					style={{
-						...style,
-						background: '#d3e3f4',
-						color: '#000',
-					}}
-				>
+				<span className={[`${OPTIONS.portletClass}__label`, `${OPTIONS.portletClass}__label-hans`]}>
 					{'汉'}
 				</span>
-				<span
-					style={{
-						...style,
-						background: '#e9e9e9',
-						color: '#434343',
-					}}
-				>
+				<span className={[`${OPTIONS.portletClass}__label`, `${OPTIONS.portletClass}__label-hant`]}>
 					{'漢'}
 				</span>
 			</div>

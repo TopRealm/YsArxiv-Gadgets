@@ -1,20 +1,20 @@
-import {IS_LOG, RRD_PAGE} from '../modules/constant';
+import * as OPTIONS from '../options.json';
 import React from 'ext.gadget.React';
 import {getMessage} from '../modules/i18n';
+import {isSpecialLog} from '../modules/isSpecialLog';
 
 interface Props {
-	onClick(): void;
+	onClick: () => void;
 }
 
 const ReportButton = ({onClick}: Props) => (
 	<button
-		className={['historysubmit', `mw-${IS_LOG ? 'log' : 'history'}-rrd`, 'mw-ui-button', 'cdx-button']}
-		name={'reportRRD'}
 		type={'button'}
-		title={getMessage('reportButtonTitle') + RRD_PAGE}
+		className={['reportrrd', 'cdx-button', 'cdx-button--weight-primary']}
+		title={getMessage('reportButtonTitle') + OPTIONS.rrdPage}
 		onClick={onClick}
 	>
-		{IS_LOG ? getMessage('reportButtonLogText') : getMessage('reportButtonText')}
+		{isSpecialLog() ? getMessage('reportButtonLogText') : getMessage('reportButtonText')}
 	</button>
 );
 
