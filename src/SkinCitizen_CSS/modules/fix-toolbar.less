@@ -1,0 +1,13 @@
+/* 修复 toolbar */
+.toolbar-fix() {
+	border-radius: 5px;
+	background: rgba(240, 248, 255, 65%);
+	padding: 5px;
+}
+
+#contentSub {
+	.toolbar-fix();
+	&:empty {
+		display: none;
+	}
+}
