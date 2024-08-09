@@ -64,7 +64,7 @@ import {mwApi} from './api';
 		let $dialog;
 		const doRemove = () => {
 			(self.wpSummary as HTMLInputElement).value =
-				`Removing [[Template:Check categories|{${`{Check categories}}]] ${(self.wpSummary as HTMLInputElement).value}`}`;
+				`Removing [[Template:Check categories|{{Check categories}}]] ${(self.wpSummary as HTMLInputElement).value}`;
 
 			(self.wpTextbox1 as HTMLTextAreaElement).value = newVal;
 		};
