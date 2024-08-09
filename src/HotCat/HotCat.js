@@ -127,6 +127,7 @@ hotCatMessages();
 			if (!map) {
 				return;
 			}
+			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 			(_a = window.HotCat).shortcuts || (_a.shortcuts = {});
 			for (let k in map) {
 				if (!Object.hasOwn(map, k) || typeof k !== 'string') {
@@ -375,14 +376,16 @@ hotCatMessages();
 			if (index < 0) {
 				// Find the index of the first interlanguage link...
 				let match = null;
-				interlanguageRE
-					? (match = interlanguageRE.exec(copiedtext))
-					: // Approximation without API: interlanguage links start with 2 to 3 lower case letters, optionally followed by
-						// a sequence of groups consisting of a dash followed by one or more lower case letters. Exceptions are "simple"
-						// and "tokipona".
-						(match = /((^|\n\r?)(\[\[\s*(([a-z]{2,3}(-[a-z]+)*)|simple|tokipona)\s*:[^\]]+]]\s*))+$/.exec(
-							copiedtext
-						));
+				if (interlanguageRE) {
+					match = interlanguageRE.exec(copiedtext);
+				} else {
+					// Approximation without API: interlanguage links start with 2 to 3 lower case letters, optionally followed by
+					// a sequence of groups consisting of a dash followed by one or more lower case letters. Exceptions are "simple"
+					// and "tokipona".
+					match = /((^|\n\r?)(\[\[\s*(([a-z]{2,3}(-[a-z]+)*)|simple|tokipona)\s*:[^\]]+]]\s*))+$/.exec(
+						copiedtext
+					);
+				}
 				if (match) {
 					({index} = match);
 				}

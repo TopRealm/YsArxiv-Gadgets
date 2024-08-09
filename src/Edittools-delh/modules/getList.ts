@@ -4,7 +4,7 @@ const getVfdText = (code: string, comment: string) => {
 		action: {
 			type: 'encapsulate',
 			options: {
-				pre: `{${`{delh|${code}}}\n`}`,
+				pre: `{{delh|${code}}}\n`,
 				post: `\n----\n: ${comment}。--~~`.concat('~~\n{', '{delf}}'),
 			},
 		},

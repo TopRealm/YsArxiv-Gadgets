@@ -1,0 +1,34 @@
+/**
+ * SPDX-License-Identifier: CC-BY-SA-4.0
+ * _addText: '{{Gadget Header|license=CC-BY-SA-4.0}}'
+ *
+ * @base {@link https://zh.wikipedia.org/wiki/MediaWiki:Gadget-easy-archive.js}
+ * @base {@link https://meta.wikimedia.org/w/index.php?oldid=18915644}
+ * @source {@link https://github.com/TopRealm/YsArchives-Gadgets/tree/master/src/EasyArchive}
+ * @license CC-BY-SA-4.0 {@link https://youshou.wiki/wiki/H:CC-BY-SA-4.0}
+ */
+/**
+ * +------------------------------------------------------------+
+ * |            === WARNING: GLOBAL GADGET FILE ===             |
+ * +------------------------------------------------------------+
+ * |       All changes should be made in the repository,        |
+ * |                otherwise they will be lost.                |
+ * +------------------------------------------------------------+
+ * |        Changes to this page may affect many users.         |
+ * | Please discuss changes by opening an issue before editing. |
+ * +------------------------------------------------------------+
+ */
+/* <nowiki> */
+
+/* esbuild-css-modules-plugin-ns-css:src/EasyArchive/modules/util/EasyArchive.module.less */
+.ve-activated .EasyArchive-module__footerNotice_UBwzXq {
+  display: none;
+}
+.skin-citizen .EasyArchive-module__sectionIdSpan_UBwzXq {
+  margin: 0 .5rem;
+  font-size: .875rem;
+}
+
+/* </nowiki> */
+
+/*# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiZXNidWlsZC1jc3MtbW9kdWxlcy1wbHVnaW4tbnMtY3NzOnNyYy9FYXN5QXJjaGl2ZS9tb2R1bGVzL3V0aWwvRWFzeUFyY2hpdmUubW9kdWxlLmxlc3MiXSwKICAic291cmNlc0NvbnRlbnQiOiBbIi8qIDxzdGRpbj4gKi9cbi52ZS1hY3RpdmF0ZWQgLkVhc3lBcmNoaXZlLW1vZHVsZV9fZm9vdGVyTm90aWNlX1VCd3pYcSB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4uc2tpbi1jaXRpemVuIC5FYXN5QXJjaGl2ZS1tb2R1bGVfX3NlY3Rpb25JZFNwYW5fVUJ3elhxIHtcbiAgbWFyZ2luOiAwIC41cmVtO1xuICBmb250LXNpemU6IC44NzVyZW07XG59XG4iXSwKICAibWFwcGluZ3MiOiAiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUNBLENBQUMsYUFBYSxDQUFDO0FBQ2IsV0FBUztBQUNYO0FBQ0EsQ0FBQyxhQUFhLENBQUM7QUFDYixVQUFRLEVBQUU7QUFDVixhQUFXO0FBQ2I7IiwKICAibmFtZXMiOiBbXQp9Cg== */

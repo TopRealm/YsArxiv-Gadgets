@@ -168,7 +168,7 @@ const floatTOC = ($originToc: JQuery): void => {
 			}
 		};
 		$originTocTitle.on('click', (): void => {
-			isCollapse ? storeState('originTOC', 'open') : storeState('originTOC', 'close');
+			storeState('originTOC', isCollapse ? 'open' : 'close');
 			collapseToggle();
 			$originTocItem.fadeToggle();
 		});

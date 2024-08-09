@@ -19,7 +19,7 @@
  */
 /* <nowiki> */
 
-/* src/RRD/RRD.less */
+/* src/RRD/components/DialogInner.less */
 .rrd__content-wrapper {
   float: left;
   padding: 0 5px;
@@ -27,4 +27,4 @@
 
 /* </nowiki> */
 
-/*# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vLi4vc3JjL1JSRC9SUkQubGVzcyJdLAogICJzb3VyY2VzQ29udGVudCI6IFsiLnJyZF9fY29udGVudC13cmFwcGVyIHtcbiAgZmxvYXQ6IGxlZnQ7XG4gIHBhZGRpbmc6IDAgNXB4O1xufVxuIl0sCiAgIm1hcHBpbmdzIjogIjs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLENBQUM7QUFDQyxTQUFPO0FBQ1AsV0FBUyxFQUFFO0FBQ2I7IiwKICAibmFtZXMiOiBbXQp9Cg== */
+/*# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vLi4vc3JjL1JSRC9jb21wb25lbnRzL0RpYWxvZ0lubmVyLmxlc3MiXSwKICAic291cmNlc0NvbnRlbnQiOiBbIi5ycmRfX2NvbnRlbnQtd3JhcHBlciB7XG4gIGZsb2F0OiBsZWZ0O1xuICBwYWRkaW5nOiAwIDVweDtcbn1cbiJdLAogICJtYXBwaW5ncyI6ICI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxDQUFDO0FBQ0MsU0FBTztBQUNQLFdBQVMsRUFBRTtBQUNiOyIsCiAgIm5hbWVzIjogW10KfQo= */

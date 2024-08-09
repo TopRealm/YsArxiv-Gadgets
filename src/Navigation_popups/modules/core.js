@@ -1564,6 +1564,7 @@ const popups = () => {
 			},
 		};
 		// options with default values or backreferences
+		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 		(_b = Insta.conf.user).name || (_b.name = 'Qiuwen Baike contributors');
 		Insta.conf.user.signature = `[[${Insta.conf.locale.user}:${Insta.conf.user.name}|${Insta.conf.user.name}]]`;
 		// define constants
@@ -6742,8 +6743,6 @@ const popups = () => {
 			case 'prev':
 				if (oldid) {
 					params.fromrev = oldid;
-				} else {
-					params.fromtitle;
 				}
 				params.torelative = 'prev';
 				break;

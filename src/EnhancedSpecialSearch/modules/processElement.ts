@@ -3,7 +3,7 @@ import {LabelElement, SelectElement, WrapperElement} from '../components/SelectE
 import {addListener} from './addListener';
 
 const processElement = (searchElement: HTMLElement, targetElement: HTMLElement): void => {
-	targetElement.setAttribute('style', `${OPTIONS.flexStyle}`);
+	targetElement.setAttribute('style', OPTIONS.flexStyle);
 
 	const wrapperElement = WrapperElement() as HTMLDivElement;
 	const labelElement = LabelElement();

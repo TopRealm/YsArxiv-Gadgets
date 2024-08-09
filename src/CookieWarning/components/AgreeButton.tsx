@@ -2,7 +2,7 @@ import React from 'ext.gadget.React';
 import {getMessage} from '../modules/i18n';
 
 interface Props {
-	onClick(): void;
+	onClick: () => void;
 }
 
 const AgreeButton = ({onClick}: Props) => (

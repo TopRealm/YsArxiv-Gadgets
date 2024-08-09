@@ -1,24 +1,25 @@
-import {IS_LOG} from '../modules/constant';
+import './DialogInner.less';
 import React from 'ext.gadget.React';
 import {getMessage} from '../modules/i18n';
+import {isSpecialLog} from '../modules/isSpecialLog';
 
 const DialogInner = () => (
 	<div id="rrd__config">
-		<>{getMessage('hideItems')}</>
+		{getMessage('hideItems')}
 		<br />
-		<div className={'rrd__content-wrapper'}>
+		<div className="rrd__content-wrapper">
 			<input name="content" id="rrd__hide-content" type="checkbox" value="content" checked />
 			<label htmlFor="rrd__hide-content" id="rrd-content">
-				{IS_LOG ? getMessage('hideLog') : getMessage('hideContent')}
+				{isSpecialLog() ? getMessage('hideLog') : getMessage('hideContent')}
 			</label>
 		</div>
-		<div className={'rrd__content-wrapper'}>
+		<div className="rrd__content-wrapper">
 			<input name="username" id="rrd__hide-username" type="checkbox" value="username" />
 			<label htmlFor="rrd__hide-username" id="rrd-username">
 				{getMessage('hideUsername')}
 			</label>
 		</div>
-		<div className={'rrd__content-wrapper'}>
+		<div className="rrd__content-wrapper">
 			<input name="summary" id="rrd__hide-summary" type="checkbox" value="summary" />
 			<label htmlFor="rrd__hide-summary" id="rrd-summary">
 				{getMessage('hideSummary')}
@@ -26,7 +27,7 @@ const DialogInner = () => (
 		</div>
 		<br />
 		<br />
-		<>{getMessage('hideReason')}</>
+		{getMessage('hideReason')}
 		<br />
 		<select name="rrd__reason" id="rrd__reason">
 			<option value={getMessage('hideReasonRD1')}>{getMessage('hideReasonRD1')}</option>
@@ -38,7 +39,7 @@ const DialogInner = () => (
 		</select>
 		<br />
 		<br />
-		<>{getMessage('otherReasons')}</>
+		{getMessage('otherReasons')}
 		<br />
 		<textarea name="otherReasons" id="rrd__other-reasons" rows={4}></textarea>
 	</div>

@@ -31,7 +31,7 @@ const generateSummaryDropdown = ($wpSummary: JQuery): JQuery => {
 		label: COMMON_SUMMARIES_LABEL,
 	});
 
-	dropdownWidget.setElementId(`${OPTIONS.dropdownId}`);
+	dropdownWidget.setElementId(OPTIONS.dropdownId);
 
 	dropdownWidget.getMenu().on('select', (optionWidget: OO.ui.OptionWidget | OO.ui.OptionWidget[] | null): void => {
 		onSelectCallback(optionWidget as OO.ui.OptionWidget, $wpSummary);
