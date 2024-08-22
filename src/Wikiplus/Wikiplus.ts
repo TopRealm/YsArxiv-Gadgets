@@ -9,7 +9,7 @@ import './Wikiplus.less';
 	const {'visualeditor-enable': isVeEnable} = mw.user.options.get() as Record<string, unknown>;
 
 	const loader = async (): Promise<void> => {
-		await import('./modules/core');
+		await import('./modules/index');
 	};
 
 	/* see <https://github.com/Wikiplus/Wikiplus/issues/65> */

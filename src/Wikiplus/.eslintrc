@@ -7,5 +7,5 @@
 		"mediawiki/msg-doc": "off",
 		"no-use-before-define": "off"
 	},
-	"ignorePatterns": ["modules/core.js"]
+	"ignorePatterns": ["modules/**.js", "modules/**/*.js"]
 }
