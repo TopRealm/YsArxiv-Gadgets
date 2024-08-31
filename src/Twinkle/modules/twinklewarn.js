@@ -719,7 +719,7 @@
 				label: window.wgULS('在编辑摘要制造不适当的内容', '在編輯摘要製造不適當的內容'),
 				summary: window.wgULS('警告：在编辑摘要制造不适当的内容', '警告：在編輯摘要製造不適當的內容'),
 			},
-			'uw-illegalavattar': {
+			'uw-illegalavatar': {
 				label: window.wgULS('头像违规', '頭像違規'),
 				summary: window.wgULS('您近期上传的头像违规', '您近期上傳的頭像違規'),
 			},
