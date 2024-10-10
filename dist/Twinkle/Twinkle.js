@@ -8461,7 +8461,7 @@ var init_twinkleimage = __esm({
           const params = pageobj.getCallbackParameters();
           text = text.replace(/\{\{(mtc|(copy |move )?to ?(share|commons)|move to (qiuwen share|wikimedia commons)|copy to (qiuwen share|wikimedia commons))[^}]*\}\}/gi, "");
           if (params.type !== "orphaned fair use") {
-            const ysarchives_page = new Morebits.wiki.page("Qiuwen_talk:存废讨论/文件快速删除提报", window.wgULS("加入快速删除记录项", "加入快速刪除記錄項"));
+            const ysarchives_page = new Morebits.wiki.page("LIB_talk:存废讨论/文件快速删除提报", window.wgULS("加入快速删除记录项", "加入快速刪除記錄項"));
             ysarchives_page.setFollowRedirect(true);
             ysarchives_page.setCallbackParameters(params);
             ysarchives_page.load(Twinkle.image.callbacks.imageList);

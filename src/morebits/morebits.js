@@ -2465,7 +2465,7 @@ import {generateArray} from 'ext.gadget.Util';
 			return JSON.parse(wikitext);
 		});
 	};
-	let morebitsWikiApiUserAgent = 'Qiuwen/1.1 (morebits.js)';
+	let morebitsWikiApiUserAgent = 'YsArchives/1.1 (morebits.js)';
 	/**
 	 * Set the custom user agent header, which is used for server-side logging.
 	 * Note that doing so will set the useragent for every `Morebits.wiki.api`
@@ -2475,12 +2475,12 @@ import {generateArray} from 'ext.gadget.Util';
 	 * for original announcement.
 	 *
 	 * @memberof Morebits.wiki.api
-	 * @param {string} [ua=Qiuwen/1.1 (morebits.js)] - User agent.  The default
+	 * @param {string} [ua=YsArchives/1.1 (morebits.js)] - User agent.  The default
 	 * value of `morebits.js` will be appended to any provided
 	 * value.
 	 */
 	Morebits.wiki.api.setApiUserAgent = (ua) => {
-		morebitsWikiApiUserAgent = `Qiuwen/1.1 (morebits.js${ua ? `; ${ua}` : ''})`;
+		morebitsWikiApiUserAgent = `YsArchives/1.1 (morebits.js${ua ? `; ${ua}` : ''})`;
 	};
 	/**
 	 * Change/revision tag applied to Morebits actions when no other tags are specified.
@@ -3911,8 +3911,8 @@ import {generateArray} from 'ext.gadget.Util';
 							window.wgULS('编辑被防滥用过滤器规则“', '編輯被防濫用過濾器規則「') +
 								errorData.abusefilter.description +
 								window.wgULS(
-									'”阻止。若您认为您的该次编辑是有意义的，请至 Qiuwen_talk:管理员告示板 提报。',
-									'」阻止。若您認為您的該次編輯是有意義的，請至 Qiuwen_talk:管理員告示板 提報。'
+									'”阻止。若您认为您的该次编辑是有意义的，请至 LIB_talk:管理员告示板 提报。',
+									'」阻止。若您認為您的該次編輯是有意義的，請至 LIB_talk:管理員告示板 提報。'
 								)
 						);
 						break;

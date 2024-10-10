@@ -1944,9 +1944,9 @@ var import_ext_gadget = require("ext.gadget.Util");
       return JSON.parse(wikitext);
     });
   };
-  let morebitsWikiApiUserAgent = "Qiuwen/1.1 (morebits.js)";
+  let morebitsWikiApiUserAgent = "YsArchives/1.1 (morebits.js)";
   Morebits.wiki.api.setApiUserAgent = (ua) => {
-    morebitsWikiApiUserAgent = "Qiuwen/1.1 (morebits.js".concat(ua ? "; ".concat(ua) : "", ")");
+    morebitsWikiApiUserAgent = "YsArchives/1.1 (morebits.js".concat(ua ? "; ".concat(ua) : "", ")");
   };
   const morebitsWikiChangeTag = "";
   Morebits.wiki.api.getToken = () => {
@@ -2783,7 +2783,7 @@ var import_ext_gadget = require("ext.gadget.Util");
             ctx.statusElement.error(window.wgULS("不能保存修改：页面被保护", "不能儲存修改：頁面被保護"));
             break;
           case "abusefilter-disallowed":
-            ctx.statusElement.error(window.wgULS("编辑被防滥用过滤器规则“", "編輯被防濫用過濾器規則「") + errorData.abusefilter.description + window.wgULS("”阻止。若您认为您的该次编辑是有意义的，请至 Qiuwen_talk:管理员告示板 提报。", "」阻止。若您認為您的該次編輯是有意義的，請至 Qiuwen_talk:管理員告示板 提報。"));
+            ctx.statusElement.error(window.wgULS("编辑被防滥用过滤器规则“", "編輯被防濫用過濾器規則「") + errorData.abusefilter.description + window.wgULS("”阻止。若您认为您的该次编辑是有意义的，请至 LIB_talk:管理员告示板 提报。", "」阻止。若您認為您的該次編輯是有意義的，請至 LIB_talk:管理員告示板 提報。"));
             break;
           case "abusefilter-warning":
             ctx.statusElement.error([window.wgULS("编辑被防滥用过滤器规则“", "編輯被防濫用過濾器規則「"), errorData.abusefilter.description, window.wgULS("”警告，若您仍希望做出该编辑，请尝试重新提交，根据过滤器的设置您可能可以作出此编辑。", "」警告，若您仍希望做出該編輯，請嘗試重新提交，根據過濾器的設定您可能可以作出此編輯。")]);

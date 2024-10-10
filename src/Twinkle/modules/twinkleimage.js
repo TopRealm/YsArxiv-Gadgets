@@ -274,7 +274,7 @@
 			// Adding discussion
 			if (params.type !== 'orphaned fair use') {
 				const ysarchives_page = new Morebits.wiki.page(
-					'Qiuwen_talk:存废讨论/文件快速删除提报',
+					'LIB_talk:存废讨论/文件快速删除提报',
 					window.wgULS('加入快速删除记录项', '加入快速刪除記錄項')
 				);
 				ysarchives_page.setFollowRedirect(true);
