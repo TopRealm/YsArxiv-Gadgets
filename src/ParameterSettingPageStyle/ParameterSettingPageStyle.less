@@ -1,0 +1,56 @@
+@light-blue: rgba(240, 248, 255, 0.5);
+@very-light-blue: rgba(240, 248, 255, 0.9);
+@white-translucent: rgba(255, 255, 255, 0.6);
+
+.mw-special-Preferences {
+	// 国际化部分选项框鼠标悬浮样式
+	.oo-ui-dropdownInputWidget.oo-ui-widget-enabled:hover {
+		border-radius: 5px;
+	}
+
+	// 将主体边框隐藏
+	.mw-prefs-tabs-wrapper.oo-ui-layout.oo-ui-panelLayout.oo-ui-panelLayout-framed {
+		border: 0;
+	}
+
+	// 设置底部按钮部分样式
+	#prefcontrol {
+		button.oo-ui-buttonElement-button {
+			margin-left: 30px;
+		}
+	}
+
+	.mw-prefs-buttons {
+		margin-top: 20px;
+		border-radius: 5px;
+		background: @very-light-blue;
+	}
+
+	// 导航选项区域样式
+	#ooui-php-490 {
+		border-radius: 5px 5px 0 0;
+		background: @light-blue;
+	}
+
+	// 调整设置选项导航条选项的样式
+	.oo-ui-widget.oo-ui-widget-enabled.oo-ui-labelElement.oo-ui-optionWidget.oo-ui-tabOptionWidget {
+		border-radius: 6px;
+	}
+
+	// 中间部分和过度
+	.oo-ui-menuLayout-content {
+		border-radius: 0 0 5px 5px;
+		background: @white-translucent;
+		position: relative;
+		top: 10px !important;
+
+		&::after {
+			content: '';
+			width: 100%;
+			height: 10px;
+			position: absolute;
+			top: -10px;
+			background: linear-gradient(0deg, @white-translucent, @light-blue);
+		}
+	}
+}

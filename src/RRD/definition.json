@@ -1,0 +1,15 @@
+{
+	"enable": true,
+	"description": "<span id=\"Gadget-RRD\"></span> [[Project talk:版本删除提报|版本删除提报]]工具 <small>“页面历史”界面使用</small>",
+	"section": "sysop",
+	"excludeSites": ["loginwiki"],
+	"dependencies": [
+		"ext.gadget.i18n",
+		"ext.gadget.React",
+		"ext.gadget.Util",
+		"jquery.ui",
+		"mediawiki.api",
+		"mediawiki.util"
+	],
+	"rights": ["skipcaptcha"]
+}

@@ -1,0 +1,30 @@
+/**
+ * SPDX-License-Identifier: CC-BY-SA-4.0
+ * _addText: '{{Gadget Header|license=CC-BY-SA-4.0}}'
+ *
+ * @base {@link https://zh.wikipedia.org/wiki/User:WhitePhosphorus/js/rrd.js}
+ * @source {@link https://github.com/TopRealm/YsArchives-Gadgets/tree/master/src/RRD}
+ * @license CC-BY-SA-4.0 {@link https://youshou.wiki/wiki/H:CC-BY-SA-4.0}
+ */
+/**
+ * +------------------------------------------------------------+
+ * |            === WARNING: GLOBAL GADGET FILE ===             |
+ * +------------------------------------------------------------+
+ * |       All changes should be made in the repository,        |
+ * |                otherwise they will be lost.                |
+ * +------------------------------------------------------------+
+ * |        Changes to this page may affect many users.         |
+ * | Please discuss changes by opening an issue before editing. |
+ * +------------------------------------------------------------+
+ */
+/* <nowiki> */
+
+/* src/RRD/components/DialogInner.less */
+.rrd__content-wrapper {
+  float: left;
+  padding: 0 5px;
+}
+
+/* </nowiki> */
+
+/*# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vLi4vc3JjL1JSRC9jb21wb25lbnRzL0RpYWxvZ0lubmVyLmxlc3MiXSwKICAic291cmNlc0NvbnRlbnQiOiBbIi5ycmRfX2NvbnRlbnQtd3JhcHBlciB7XG4gIGZsb2F0OiBsZWZ0O1xuICBwYWRkaW5nOiAwIDVweDtcbn1cbiJdLAogICJtYXBwaW5ncyI6ICI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxDQUFDO0FBQ0MsU0FBTztBQUNQLFdBQVMsRUFBRTtBQUNiOyIsCiAgIm5hbWVzIjogW10KfQo= */

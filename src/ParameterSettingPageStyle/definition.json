@@ -1,0 +1,8 @@
+{
+	"enable": true,
+	"description": "<sup><abbr title=\"默认为所有注册用户启用\">U</abbr></sup><span id=\"Gadget-ParameterSettingPageStyle\"></span> [[Special:参数设置|参数设置]]页面CSS样式",
+	"section": "browser",
+	"default": true,
+	"hidden": true,
+	"rights": ["edit"]
+}
