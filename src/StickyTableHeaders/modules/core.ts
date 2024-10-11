@@ -7,7 +7,7 @@ export const stickyTableHeaders = (): void => {
 			.find('tbody>tr>th')
 			.parent()
 			.eq(0) as JQuery<HTMLTableRowElement>;
-		const $trTd: JQuery<HTMLTableRowElement> = $table.find('tbody>tr>td').parent() as JQuery<HTMLTableRowElement>;
+		const $trTd: JQuery<HTMLTableRowElement> = $table.find('tbody>tr>td').parent();
 		const $target: JQuery<HTMLTableSectionElement> | JQuery<HTMLTableRowElement> | null = $thead.length
 			? $thead
 			: $trTh.length
