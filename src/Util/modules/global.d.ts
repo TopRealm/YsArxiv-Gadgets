@@ -2,6 +2,7 @@ type AddEventListenerWithRemover = import('./addEventListenerWithRemover').AddEv
 type ChangeOpacityWhenMouseEnterOrLeave =
 	import('./changeOpacityWhenMouseEnterOrLeave').ChangeOpacityWhenMouseEnterOrLeave;
 type CheckA11yConfirmKey = import('./checkA11yConfirmKey').CheckA11yConfirmKey;
+type CheckDependencies = import('./checkDependencies').CheckDependencies;
 type Delay = import('./delay').Delay;
 type GenerateArray = import('./generateArray').GenerateArray;
 type GenerateSvgDataUrl = import('./generateSvgDataUrl').GenerateSvgDataUrl;
@@ -21,6 +22,7 @@ declare module 'ext.gadget.Util' {
 	export const addEventListenerWithRemover: AddEventListenerWithRemover;
 	export const changeOpacityWhenMouseEnterOrLeave: ChangeOpacityWhenMouseEnterOrLeave;
 	export const checkA11yConfirmKey: CheckA11yConfirmKey;
+	export const checkDependencies: CheckDependencies;
 	export const delay: Delay;
 	export const generateArray: GenerateArray;
 	export const generateSvgDataUrl: GenerateSvgDataUrl;

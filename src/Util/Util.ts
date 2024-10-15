@@ -1,6 +1,7 @@
 export {addEventListenerWithRemover} from './modules/addEventListenerWithRemover';
 export {changeOpacityWhenMouseEnterOrLeave} from './modules/changeOpacityWhenMouseEnterOrLeave';
 export {checkA11yConfirmKey} from './modules/checkA11yConfirmKey';
+export {checkDependencies} from './modules/checkDependencies.ts';
 export {delay} from './modules/delay';
 export {generateArray} from './modules/generateArray';
 export {generateSvgDataUrl} from './modules/generateSvgDataUrl';
