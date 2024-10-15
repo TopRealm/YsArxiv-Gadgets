@@ -5,7 +5,8 @@
  * @param {string}} url
  * @param url
  */
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 export function parseQuery(url) {
 	const reg = /(([^?&=]+)(?:=([^?&=]*))*)/g;
 	const params = {};

@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import Constants from '../utils/constants';
 import Notification from './notification';
 import i18n from '../utils/i18n';

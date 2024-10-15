@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 class Settings {
 	getSetting(key, object = {}) {
 		const w = object;

@@ -1,7 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import requests from '../utils/requests';
 import Log from '../utils/log';
 import i18n from '../utils/i18n';
-import Constants from '../utils/constants';
 
 class Wiki {
 	pageInfoCache = {};

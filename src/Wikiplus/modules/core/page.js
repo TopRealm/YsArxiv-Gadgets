@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import Wiki from '../services/wiki';
 import Log from '../utils/log';
 
