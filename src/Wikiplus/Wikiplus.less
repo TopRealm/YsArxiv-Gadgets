@@ -1,15 +1,15 @@
-@import './style-modules/core.less';
+.client-js {
+	.Wikiplus-InterBox {
+		max-width: 90%;
+		max-width: calc(100% - 2em);
+	}
 
-.Wikiplus-InterBox {
-	max-width: 90%;
-	max-width: calc(100% - 2em);
-}
+	.Wikiplus-Symbol-Btn {
+		vertical-align: bottom !important;
+	}
 
-.Wikiplus-Symbol-Btn {
-	vertical-align: bottom !important;
-}
-
-/* see <https://github.com/Wikiplus/Wikiplus/issues/65> */
-.mw-editsection-visualeditor {
-	display: none;
+	.mw-editsection-visualeditor {
+		/* see <https://github.com/Wikiplus/Wikiplus/issues/65> */
+		display: none;
+	}
 }

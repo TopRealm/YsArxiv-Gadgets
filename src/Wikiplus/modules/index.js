@@ -2,8 +2,7 @@
  * Wikiplus
  * Eridanus Sora <sora@sound.moe>
  */
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
+
 import Page from './core/page';
 import UI from './core/ui';
 import Notification from './core/notification';
@@ -12,6 +11,7 @@ import Settings from './utils/settings';
 import Log from './utils/log';
 import Constants from './utils/constants';
 import i18n from './utils/i18n';
+import './wikiplus.css';
 
 $(async () => {
 	const Pages = {};

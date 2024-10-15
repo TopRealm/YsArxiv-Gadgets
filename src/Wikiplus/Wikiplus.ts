@@ -10,6 +10,7 @@ import './Wikiplus.less';
 
 	const loader = async (): Promise<void> => {
 		await import('./modules/index');
+		await import('./resize');
 	};
 
 	/* see <https://github.com/Wikiplus/Wikiplus/issues/65> */

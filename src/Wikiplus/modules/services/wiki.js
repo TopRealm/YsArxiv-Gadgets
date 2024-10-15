@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 import requests from '../utils/requests';
 import Log from '../utils/log';
 import i18n from '../utils/i18n';
@@ -91,12 +89,29 @@ class Wiki {
 	 */
 	async getWikiText({section, revisionId}) {
 		try {
-			const response = await (
-				await fetch(
-					`${location.protocol}//${location.host}${Constants.scriptPath}/index.php?oldid=${revisionId}&section=${section}&action=raw`
-				)
-			).text();
-			return response;
+			const params = {
+				action: 'query',
+				prop: 'revisions',
+				rvprop: 'content',
+				format: 'json',
+				revids: revisionId,
+			};
+			if (revisionId) {
+				params.revids = revisionId;
+			}
+			if (section) {
+				params.rvsection = section;
+			}
+			const response = await requests.get(params);
+			if (response.query && response.query.pages) {
+				if (Object.keys(response.query.pages)[0] === '-1') {
+					// 不存在这一页面
+					// Page not found.
+					return '';
+				}
+				const pageInfo = response.query.pages[Object.keys(response.query.pages)[0]].revisions[0];
+				return pageInfo['*'];
+			}
 		} catch {
 			Log.error('fail_to_get_wikitext');
 		}
