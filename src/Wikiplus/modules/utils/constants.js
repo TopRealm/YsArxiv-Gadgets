@@ -33,7 +33,7 @@ class Constants {
 	get wikiId() {
 		return window.mw.config.get('wgWikiID');
 	}
-	userAgent = `Qiuwen/1.1 Wikiplus/${this.version} (${this.wikiId})`;
+	userAgent = `YsArchives/1.1 Wikiplus/${this.version} (${this.wikiId})`;
 }
 
 export default new Constants();
