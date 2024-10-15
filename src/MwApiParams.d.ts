@@ -3,6 +3,8 @@ type ApiClientLoginParams = import('types-mediawiki-renovate/api_params').ApiCli
 	import('types-mediawiki-renovate/api_params').ApiFormatJsonParams;
 type ApiComparePagesParams = import('types-mediawiki-renovate/api_params').ApiComparePagesParams &
 	import('types-mediawiki-renovate/api_params').ApiFormatJsonParams;
+type ApiQueryContributorsParams = import('types-mediawiki-renovate/api_params').ApiQueryContributorsParams &
+	import('types-mediawiki-renovate/api_params').ApiFormatJsonParams;
 type ApiEditPageParams = import('types-mediawiki-renovate/api_params').ApiEditPageParams &
 	import('types-mediawiki-renovate/api_params').ApiFormatJsonParams;
 type ApiImportParams = import('types-mediawiki-renovate/api_params').ApiImportParams &
