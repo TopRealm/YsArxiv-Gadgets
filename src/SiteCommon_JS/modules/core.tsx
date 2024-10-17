@@ -222,7 +222,7 @@ const titleCleanUp = ($body: JQuery<HTMLBodyElement>): void => {
 	/**
 	 * Cleanup title for all pages
 	 */
-	if (URL_DIFF || WG_ACTION !== 'view' || ![6, 118].includes(WG_NAMESPACE_NUMBER)) {
+	if (URL_DIFF || WG_ACTION !== 'view' || ![6, 302].includes(WG_NAMESPACE_NUMBER)) {
 		return;
 	}
 	const fullPageName: string = new mw.Title(WG_PAGE_NAME).getPrefixedText();

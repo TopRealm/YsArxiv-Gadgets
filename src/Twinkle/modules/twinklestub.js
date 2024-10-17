@@ -16,7 +16,7 @@ import {generateArray} from 'ext.gadget.Util';
 			// Skip
 			// article/draft article tagging
 		} else if (
-			([0, 118].includes(mw.config.get('wgNamespaceNumber')) && mw.config.get('wgCurRevisionId')) ||
+			([0, 302].includes(mw.config.get('wgNamespaceNumber')) && mw.config.get('wgCurRevisionId')) ||
 			Morebits.pageNameNorm === Twinkle.getPref('sandboxPage')
 		) {
 			Twinkle.stub.mode = '条目';
@@ -28,7 +28,7 @@ import {generateArray} from 'ext.gadget.Util';
 			// Skip
 			// article/draft article tagging
 		} else if (
-			((mw.config.get('wgNamespaceNumber') === 0 || mw.config.get('wgNamespaceNumber') === 118) &&
+			((mw.config.get('wgNamespaceNumber') === 0 || mw.config.get('wgNamespaceNumber') === 302) &&
 				mw.config.get('wgCurRevisionId')) ||
 			Morebits.pageNameNorm === Twinkle.getPref('sandboxPage')
 		) {

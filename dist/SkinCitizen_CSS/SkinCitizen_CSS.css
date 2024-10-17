@@ -349,7 +349,7 @@ header.mw-body-header {
   padding: 5px;
 }
 #contentSub:empty {
-  display: none;
+  display: none !important;
 }
 
 /* </nowiki> */
