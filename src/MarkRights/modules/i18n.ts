@@ -47,7 +47,7 @@ const getI18nMessages = () => {
 			'zh-hans': '巡查员',
 			'zh-hant': '巡查員',
 		}),
-		autorepatrolled: localize({
+		autopatrolled: localize({
 			en: 'Good Editor',
 			'zh-hans': '优秀编辑者',
 			'zh-hant': '優秀編輯者',
