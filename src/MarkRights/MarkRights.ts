@@ -8,3 +8,5 @@ mw.hook('wikipage.content').add(function markRights($content): void {
 		void markUserRights($content);
 	}
 });
+
+export {queryGlobalUserGroups, queryUserGroups} from './modules/query';

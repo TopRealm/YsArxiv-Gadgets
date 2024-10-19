@@ -3,7 +3,7 @@ import {localize} from 'ext.gadget.i18n';
 const getI18nMessages = () => {
 	return {
 		responsibleoperator: localize({
-			en: 'ResponsibleOperator',
+			en: 'Responsible Operator',
 			'zh-hans': '责任运营',
 			'zh-hant': '責任運營',
 		}),
@@ -47,10 +47,10 @@ const getI18nMessages = () => {
 			'zh-hans': '巡查员',
 			'zh-hant': '巡查員',
 		}),
-		autopatrolled: localize({
-			en: 'Exempted from page patrol',
-			'zh-hans': '优质编辑者',
-			'zh-hant': '優質編輯者',
+		autorepatrolled: localize({
+			en: 'Good Editor',
+			'zh-hans': '优秀编辑者',
+			'zh-hant': '優秀編輯者',
 		}),
 		eventsponsor: localize({
 			en: 'Event Sponsor',
