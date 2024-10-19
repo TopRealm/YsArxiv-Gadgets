@@ -1,0 +1,13 @@
+// 修复图片背景色。 by awajie
+.client-darkmode {
+	[typeof~='mw:File'] img,
+	[typeof~='mw:File/Thumb'] img,
+	[typeof~='mw:File/Frame'] img,
+	[typeof~='mw:File/Frameless'] img,
+	.mw-halign-left img,
+	.mw-halign-right img,
+	.mw-halign-center img {
+		width: auto;
+		background: rgba(0, 0, 0, 0) !important;
+	}
+}
