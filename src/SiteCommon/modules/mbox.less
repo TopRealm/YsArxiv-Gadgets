@@ -13,7 +13,7 @@
 	border-left-width: 0.375em;
 	border-style: solid;
 	border-radius: @border-radius--small;
-	border-color: #36c;
+	border-color: @const-color-blue;
 	padding: 0.5em 0.5em 0.5em 0;
 	margin: 0.25em auto;
 	background: #def;
@@ -67,7 +67,7 @@
 
 	/* Styles per type */
 	&-notice {
-		border-color: #36c;
+		border-color: @const-color-blue;
 		background: #def;
 	}
 
@@ -302,6 +302,8 @@
 .mw-warning-with-logexcerpt,
 .mw-lag-warn-high,
 .mw-cascadeprotectedwarning,
+.cdx-message--block,
+.cdx-message--warning,
 #mw-protect-cascadeon {
 	padding: 0.5em;
 	border: 1px solid #bb7070;

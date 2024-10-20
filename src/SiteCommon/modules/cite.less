@@ -1,15 +1,6 @@
-/* 参考来源列表字号 */
 ol.references,
 div.reflist {
 	margin-bottom: 0.5em;
-
-	/* 默认字号 */
-	font-size: 90%;
-}
-
-/* 重置包含于<div class="reflist">参考列表的字号 */
-div.reflist ol.references {
-	font-size: 100%;
 }
 
 div.reflist ol.references,
@@ -23,11 +14,11 @@ ol.references .mw-extended-references {
 	margin-left: 1.25em;
 }
 
-/* 蓝色突出显示单所点击的引用项，以便于用户查找 */
 ol.references li,
 span.citation,
 sup.reference {
 	&:target {
+		/* 蓝色突出显示单所点击的引用项，以便于用户查找 */
 		background-color: #def;
 	}
 }
