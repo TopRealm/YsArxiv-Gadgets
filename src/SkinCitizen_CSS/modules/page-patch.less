@@ -1,0 +1,288 @@
+.input-bottom() {
+	color: #fff;
+	border-radius: 5px;
+	padding: 3px 8px;
+	font-size: 1rem;
+	border-color: var(--color-primary);
+	background-color: var(--color-primary);
+}
+.input-w-100() {
+	width: 100%;
+	max-width: 400px;
+}
+
+// 全局 fieldset
+fieldset {
+	min-width: 0;
+}
+
+// 修复可视化和源代码编辑在移动端上两个按钮分离导致样式突兀的问题
+@media (min-width: 300px) and (max-width: 345px) {
+	#p-views {
+		.citizen-ve-edit-merged#ca-edit {
+			> a {
+				border-radius: var(--border-radius--medium);
+			}
+		}
+		.citizen-ve-edit-merged#ca-ve-edit {
+			> a {
+				border-radius: var(--border-radius--medium);
+			}
+		}
+	}
+}
+
+// 权限设置页面响应式样式 修改防止元素溢出
+body[class*='page-Special_用户权限'] {
+	fieldset {
+		border-radius: 5px;
+		#wpReason,
+		#username {
+			width: 90%;
+			padding: 5px;
+			border-radius: 5px;
+		}
+		input[value='加载用户组'],
+		input[name='saveusergroups'] {
+			.input-bottom();
+		}
+		#mw-userrights-table-outer {
+			input[name='user-reason'] {
+				width: 95%;
+				padding: 5px;
+				border-radius: 4px;
+			}
+			input[name='saveusergroups'] {
+				.input-bottom();
+			}
+		}
+	}
+}
+
+// 搜索页面样式 微调
+body.page-Special_搜索 {
+	.oo-ui-layout.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-actionFieldLayout {
+		.oo-ui-fieldLayout-body {
+			width: 100%;
+		}
+	}
+	#mw-search-top-table {
+		.oo-ui-widget {
+			font-size: 0.875rem;
+		}
+		label.oo-ui-labelElement-label[for='enhancedSpecialSearch'] {
+			margin: 0 10px;
+		}
+	}
+	#mw-searchoptions {
+		border-radius: 5px;
+	}
+}
+
+body.page-Special_MediaSearch {
+	#sdms-app {
+		#sdms-search-input__label {
+			+ .cdx-text-input.cdx-text-input--has-start-icon.cdx-text-input--status-default.sd-input__input {
+				min-width: 0;
+			}
+		}
+		.cdx-button.cdx-button--action-progressive.cdx-button--weight-primary.cdx-button--size-medium.cdx-button--framed.sd-input__button {
+			border-radius: 0 4px 4px 0;
+		}
+	}
+}
+
+body.page-Special_重置密钥 {
+	#ooui-php-5 {
+		.oo-ui-fieldLayout-body {
+			display: inline-flex;
+			span.oo-ui-fieldLayout-field {
+				width: initial;
+			}
+		}
+	}
+}
+
+// 相关更改页面样式 微调
+body.page-Special_链出更改 {
+	#mw-content-text {
+		.mw-rcfilters-ui-row {
+			display: flex;
+
+			@media screen and (max-width: 674px) {
+				flex-direction: column;
+				.mw-rcfilters-ui-cell {
+					margin-right: 0;
+					.mw-rcfilters-ui-rclTargetPageWidget {
+						min-width: 0;
+					}
+				}
+			}
+			.mw-rcfilters-ui-cell {
+				@media screen and (min-width: 675px) {
+					margin-right: auto;
+				}
+			}
+		}
+	}
+	#ooui-11 {
+		white-space: initial;
+	}
+}
+
+// 上传文件页面样式 微调
+body.page-Special_上传文件 {
+	fieldset {
+		@media (min-width: 720px) and (max-width: 857px) {
+			overflow: scroll hidden;
+		}
+	}
+}
+
+body.page-Special_查看头像 {
+	fieldset {
+		input:not([type='submit']) {
+			width: 95%;
+			padding: 8px;
+			margin: 6px 0;
+			max-width: 500px;
+			border-radius: 5px;
+		}
+		input[type='submit'] {
+			.input-bottom();
+		}
+	}
+}
+
+body.page-Special_Api沙盒 {
+	#mw-apisandbox-ui {
+		.mw-apisandbox-toolbar {
+			padding: 0.5em;
+		}
+		.oo-ui-layout.oo-ui-menuLayout.oo-ui-menuLayout-static.oo-ui-menuLayout-before.oo-ui-menuLayout-showMenu.oo-ui-bookletLayout {
+			overflow: auto;
+		}
+	}
+}
+
+body.page-Special_差异 {
+	#mw-input-diff {
+		.oo-ui-widget.oo-ui-widget-enabled.oo-ui-inputWidget.oo-ui-dropdownInputWidget {
+			border-radius: 5px;
+		}
+	}
+}
+
+body.page-Special_询问 {
+	#ask-toplinks {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		span {
+			float: none;
+		}
+	}
+	fieldset {
+		input,
+		select:not([name='order_num[]']) {
+			.input-w-100();
+		}
+	}
+}
+
+body.page-Special_替换文本 {
+	fieldset {
+		input {
+			.input-w-100();
+		}
+	}
+}
+
+body.page-Special_批量正则编辑 {
+	input[name='wpSummary'] {
+		.input-w-100();
+	}
+}
+
+body.page-Special_创建类 {
+	input {
+		width: 95%;
+		max-width: 300px;
+		padding: 5px;
+		border-radius: 6px;
+	}
+	#fieldsList {
+		.fieldBox:not(#starterField) {
+			margin: initial;
+		}
+	}
+}
+
+body.page-Special_恢复被删页面 {
+	#mw-content-text {
+		.oo-ui-layout.oo-ui-labelElement.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left.oo-ui-actionFieldLayout {
+			.oo-ui-fieldLayout-body {
+				flex-wrap: wrap;
+				.oo-ui-fieldLayout-field {
+					width: 100%;
+					max-width: 400px;
+					line-height: 1;
+
+					@media screen and (max-width: 300px) {
+						display: flex;
+						flex-direction: column;
+						#ooui-php-1 {
+							input {
+								border-radius: 4px;
+							}
+						}
+						#searchUndelete {
+							border-radius: 4px;
+							margin: 5px 0;
+						}
+					}
+				}
+				.oo-ui-fieldLayout-header {
+					flex-grow: initial;
+				}
+			}
+		}
+	}
+}
+
+body.page-Special_创建模板 {
+	#fieldsList {
+		.fieldBox:not(#starterField) {
+			margin: initial;
+		}
+	}
+}
+
+body.page-Special_创建属性 {
+	input[name='property_name'] {
+		width: 95%;
+		max-width: 200px;
+		padding: 2px;
+		border-radius: 4px;
+	}
+	input[name='values'] {
+		width: 95%;
+		max-width: 400px;
+		padding: 5px;
+		border-radius: 4px;
+	}
+	#property_dropdown {
+		padding: 2px;
+		border-radius: 4px;
+	}
+	#wpSave,
+	#wpPreview {
+		.input-bottom();
+	}
+}
+
+body.page-Special_活跃用户 {
+	.oo-ui-widget.oo-ui-widget-enabled.oo-ui-draggableGroupElement.oo-ui-tagMultiselectWidget.oo-ui-tagMultiselectWidget-inlined.oo-ui-menuTagMultiselectWidget {
+		border-radius: 4px;
+	}
+}
