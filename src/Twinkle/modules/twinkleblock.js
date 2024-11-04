@@ -1298,11 +1298,8 @@ import {initMwApi} from 'ext.gadget.Util';
 			expiry: '1 day',
 			nocreate: true,
 			pageParam: true,
-			reason: window.wgULS('持续加入不符合中国价值观的非法内容', '持續加入不符合中國價值觀的非法內容'),
-			summary: window.wgULS(
-				'封禁通知：持续加入不符合中国价值观的非法内容',
-				'封鎖通知：持續加入不符合中國價值觀的非法內容'
-			),
+			reason: window.wgULS('持续加入非法内容', '持續加入非法內容'),
+			summary: window.wgULS('封禁通知：持续加入非法内容', '封鎖通知：持續加入非法內容'),
 		},
 		'uw-sockblock': {
 			autoblock: true,
@@ -1568,7 +1565,7 @@ import {initMwApi} from 'ext.gadget.Util';
 				{label: window.wgULS('骚扰用户', '騷擾使用者'), value: 'uw-hblock'},
 				{label: window.wgULS('破坏', '破壞'), value: 'uw-vblock', selected: true},
 				{
-					label: window.wgULS('持续加入不符合中国价值观的非法内容', '持續加入不符合中國價值觀的非法內容'),
+					label: window.wgULS('持续加入非法内容', '持續加入非法內容'),
 					value: 'uw-illegalblock',
 				},
 				{label: window.wgULS('滥用多个账号', '濫用多個賬號'), value: 'uw-sockblock'},

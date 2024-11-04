@@ -912,7 +912,6 @@
 		"MediaWiki:Gadget-NoteTA-pagestyles/zh-cn",
 		"MediaWiki:Gadget-NoteTA-pagestyles/zh-hans",
 		"MediaWiki:Gadget-NoteTA-pagestyles/zh-hant",
-		"MediaWiki:Gadget-NoteTA-pagestyles/zh-hk",
 		"MediaWiki:Gadget-NoteTA-pagestyles/zh-mo",
 		"MediaWiki:Gadget-NoteTA-pagestyles/zh-my",
 		"MediaWiki:Gadget-NoteTA-pagestyles/zh-sg",
