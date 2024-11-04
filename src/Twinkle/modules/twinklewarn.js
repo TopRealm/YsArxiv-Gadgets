@@ -608,18 +608,12 @@
 				list: {
 					'uw-illegal': {
 						level1: {
-							label: window.wgULS('加入不符合中国价值观的内容', '加入不符合中國價值觀的內容'),
-							summary: window.wgULS(
-								'注意：加入不符合中国价值观的内容',
-								'注意：加入不符合中國價值觀的內容'
-							),
+							label: window.wgULS('加入违法违规内容', '加入違法違規內容'),
+							summary: window.wgULS('注意：加入违法违规内容', '注意：加入違法違規內容'),
 						},
 						level2: {
-							label: window.wgULS('加入不符合中国价值观的内容', '加入不符合中國價值觀的內容'),
-							summary: window.wgULS(
-								'警告：加入不符合中国价值观的内容',
-								'警告：加入不符合中國價值觀的內容'
-							),
+							label: window.wgULS('加入违法违规内容', '加入違法違規內容'),
+							summary: window.wgULS('警告：加入违法违规内容', '警告：加入違法違規內容'),
 						},
 					},
 					'uw-own': {
