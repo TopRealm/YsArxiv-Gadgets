@@ -10,6 +10,19 @@
 	width: 100%;
 	max-width: 400px;
 }
+.buttom-media() {
+	#p-views {
+		.citizen-ve-edit-merged#ca-edit,
+		.citizen-ve-edit-merged#ca-ve-edit {
+			> a {
+				border-radius: var(--border-radius--medium);
+			}
+		}
+		.citizen-ve-edit-merged#ca-edit {
+			border-left: initial;
+		}
+	}
+}
 
 // 全局 fieldset
 fieldset {
@@ -18,15 +31,25 @@ fieldset {
 
 // 修复可视化和源代码编辑在移动端上两个按钮分离导致样式突兀的问题
 @media (min-width: 300px) and (max-width: 345px) {
-	#p-views {
-		.citizen-ve-edit-merged#ca-edit {
-			> a {
-				border-radius: var(--border-radius--medium);
+	.buttom-media();
+}
+body[class*='page-User'] {
+	@media (min-width: 348px) and (max-width: 393px) {
+		.buttom-media();
+	}
+
+	@media (min-width: 300px) and (max-width: 345px) {
+		#p-views {
+			.citizen-ve-edit-merged#ca-edit {
+				border-left: 1px solid var(--color-primary--hover);
+				> a {
+					border-bottom-left-radius: 0;
+					border-top-left-radius: 0;
+				}
 			}
-		}
-		.citizen-ve-edit-merged#ca-ve-edit {
-			> a {
-				border-radius: var(--border-radius--medium);
+			.citizen-ve-edit-merged#ca-ve-edit > a {
+				border-bottom-right-radius: 0;
+				border-top-right-radius: 0;
 			}
 		}
 	}
