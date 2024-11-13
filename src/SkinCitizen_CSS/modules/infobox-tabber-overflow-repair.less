@@ -1,0 +1,18 @@
+// 修复tabber扩展在infobox中溢出的问题 by awajie
+.infobox {
+	tbody {
+		> tr:nth-child(1) {
+			td {
+				display: flex;
+				flex-direction: column;
+				overflow-x: auto;
+				.tabber__header .tabber__header__prev::after,
+				.tabber__header .tabber__header__next::after {
+					display: block;
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+	}
+}
