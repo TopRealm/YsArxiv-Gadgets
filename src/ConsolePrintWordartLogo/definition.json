@@ -3,5 +3,5 @@
 	"description": "<sup><abbr title=\"默认为所有用户启用\">U</abbr></sup><span id=\"Gadget-NavbarAvatar\"></span>ConsolePrintWordartLogo",
 	"section": "browser",
 	"default": true,
-	"hidden": true,
+	"hidden": true
 }
