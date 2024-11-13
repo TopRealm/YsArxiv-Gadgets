@@ -1,14 +1,9 @@
-/*
- * @coding: UTF-8
- * @Author: AwAjie
- * @Date: 2024-11-09 13:48:56
- */
 (async function () {
 	const consoleTUrl = `${mw.config.get('wgServer')}/api.php?action=query&meta=siteinfo&formatversion=2&format=json`;
 	const generatordata = await fetch(consoleTUrl);
 	const generatordataJson = (await generatordata.json()) as unknown;
-	const mideawikiVersions = (generatordataJson as {query: {general: {generator: string}}}).query.general.generator;
-	const ascll = `
+	const mediawikiVersions = (generatordataJson as {query: {general: {generator: string}}}).query.general.generator;
+	const ascii = `
 ██╗     ██╗                 ██████╗ ██╗                                        ██╗██╗      ██╗
 ╚██╗   ██╔╝                ██╔═══██╗██║                                        ╚═╝██║      ╚═╝
  ╚██╗ ██╔╝██████╗ ██╗   ██╗██║   ╚═╝███████╗  ██████╗ ██╗   ██╗   ██╗  ██╗  ██╗██╗██║   ██╗██╗
@@ -17,7 +12,7 @@
     ██║  ██║   ██║██║   ██║██    ██║██║   ██║██║   ██║██║   ██║   ██║  ██║  ██║██║██╔══██╗ ██║
     ██║  ╚██████╔╝╚██████╔╝╚██████╔╝██║   ██║╚██████╔╝╚██████╔╝██╗╚█████ ████╔╝██║██║  ╚██╗██║
     ╚═╝   ╚═════╝  ╚═════╝  ╚═════╝ ╚═╝   ╚═╝ ╚═════╝  ╚═════╝ ╚═╝ ╚═════╚═══╝ ╚═╝╚═╝   ╚═╝╚═╝
-    ©2023-${new Date().getFullYear()} 有兽档案馆                                                ${mideawikiVersions}
+    ©2023-${new Date().getFullYear()} 有兽档案馆                                                ${mediawikiVersions}
     `;
-	console.log(`%c${ascll}`, 'color:#159c5a');
+	console.log(`%c${ascii}`, 'color:#159c5a');
 })();
