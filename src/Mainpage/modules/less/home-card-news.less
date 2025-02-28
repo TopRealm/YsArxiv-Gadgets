@@ -1,0 +1,24 @@
+/* home-card-news */
+#home-card-news .plainlinks {
+	margin-bottom: 1rem;
+}
+
+#home-card-news {
+	display: none;
+	flex-direction: column;
+}
+
+div[name='lib-signup'] #home-card-news {
+	display: flex;
+}
+
+@media (min-width: 769px) and (max-width: 980px) {
+	#home-card-news {
+		margin: 1rem 0 0;
+		display: flex;
+	}
+
+	div[name='lib-signup'] #home-card-news {
+		display: none;
+	}
+}

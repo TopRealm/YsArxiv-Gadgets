@@ -1,0 +1,8 @@
+{
+	"enable": true,
+	"description": "<sup><abbr title=\"默认为所有用户启用\">D</abbr></sup><span id=\"Gadget-SkinCitizen_CSS\"></span> 档案馆2025新版首页样式表与ts脚本",
+	"section": "skin",
+	"hidden": true,
+	"namespaces": [0],
+	"skins": ["citizen"]
+}

@@ -1,0 +1,89 @@
+/* episodes */
+.latest-item-episode {
+	font-size: 0.9em;
+}
+
+.latest-item-info {
+	padding: 0.3em;
+	white-space: nowrap;
+	width: 9em;
+}
+
+.latest-item-info p {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.latest-item-more {
+	width: 4em;
+	height: 4em;
+	border-radius: 999px;
+	text-align: center;
+}
+
+.scroller-item:hover {
+	border-color: var(--color-primary--hover);
+	transition: all 0.2s;
+}
+
+.scroller-item-now {
+	border-color: var(--color-primary);
+	transition: all 0.2s;
+	box-shadow:
+		0 3px 6px rgba(0, 0, 0, 0.08),
+		0 5px 8px rgba(0, 0, 0, 0.0975);
+}
+
+.latest-item-more-text {
+	width: 4em;
+	height: 4em;
+	line-height: 4em;
+}
+
+.scroller {
+	position: relative;
+}
+
+.scroller-container {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	overflow: auto hidden;
+	margin: 0 0.5rem;
+}
+
+.comic-header-a-img {
+	height: 9rem;
+	width: 9rem;
+	border-radius: 4px 4px 0 0;
+	object-fit: cover;
+}
+
+.comic-header a img {
+	.comic-header-a-img();
+}
+
+// 处理主页样式优先级
+.mw-parser-output .comic-header a img {
+	.comic-header-a-img();
+}
+
+.scroller-item {
+	flex-wrap: wrap;
+	display: flex;
+	margin: 0.8em 0.8em 0.4em 0.8em;
+	box-shadow:
+		0 3px 6px rgba(0, 0, 0, 0.04),
+		0 3px 6px rgba(0, 0, 0, 0.0575);
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	border-radius: 4px;
+	transition: all 0.2s;
+}
+
+.scroller-item:last-child {
+	margin-right: 0;
+}
+
+.scroller-item:first-child {
+	margin-left: 0;
+}

@@ -1,0 +1,14 @@
+/* navigation */
+.navigation-list {
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 0.5rem;
+	margin: 0;
+}
+
+@media (min-width: 581px) and (max-width: 768px) {
+	.navigation-list {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
