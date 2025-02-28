@@ -20,9 +20,7 @@ const libSummary = async () => {
 
 	const k = getPreviousOddWeek();
 	const d = new Date().getFullYear();
-	console.log('k', getPreviousOddWeek());
-	const titleStr = `有兽档案馆:档案馆双周报/${d}年${getMonthFromWeek(2025, k + 1)}月/第${k}-${k + 1}周`;
-	console.log(titleStr);
+	const titleStr = `有兽档案馆:档案馆双周报/${d}年${getMonthFromWeek(d, k + 1)}月/第${k}-${k + 1}周`;
 	const url = `/api/api.php?action=query&prop=extracts&exsectionformat=plain&exchars=175&format=json&titles=${titleStr}/summary`;
 	const a = await fetch(url);
 	const res = (await a.json()) as Res;
@@ -42,7 +40,6 @@ const libSummary = async () => {
 	} else {
 		extract = '加载失败QWQ，刷新试试吧';
 	}
-	console.log(extract);
 	for (const el of summary) {
 		el.innerHTML = extract;
 	}
