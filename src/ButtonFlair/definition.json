@@ -1,0 +1,6 @@
+{
+	"enable": true,
+	"description": "<sup><abbr title=\"默认为所有用户启用\">D</abbr></sup><span id=\"Gadget-ButtonFlairCSS\"></span> {{tl|ButtonFlair}}模板样式表与ts脚本",
+	"default": true,
+	"hidden": true
+}

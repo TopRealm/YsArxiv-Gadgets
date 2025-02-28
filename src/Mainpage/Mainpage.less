@@ -1,0 +1,179 @@
+@import './modules/less/episodes.less';
+@import './modules/less/fanmadeshow.less';
+@import './modules/less/index-header.less';
+@import './modules/less/home-card-news.less';
+@import './modules/less/navigation.less';
+@import './modules/less/news.less';
+@import './modules/less/signup.less';
+@import './modules/less/summary.less';
+
+// 清除citizen样式
+.page-有兽档案馆_首页 {
+	#content {
+		.citizen-body-container {
+			all: unset;
+
+			#bodyContent {
+				#mw-content-text {
+					all: unset;
+				}
+			}
+		}
+	}
+}
+
+.btn {
+	text-align: center;
+	padding: 0.3rem 1rem;
+	background-color: #6495ed;
+	color: #fff !important;
+	border-radius: 0.5rem;
+	white-space: nowrap;
+	font-weight: bold;
+}
+
+.home-card__label {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.5rem;
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.home-card__label img {
+	margin-right: 0.3rem;
+}
+
+/* index body */
+.mw-parser-output {
+	max-width: 1200px;
+	border-radius: 1rem;
+	color: #000;
+	margin: 1rem auto 0;
+	display: flex;
+	padding: 1.6rem;
+	background-color: rgba(255, 255, 255, 0.9);
+	box-sizing: border-box;
+	position: relative;
+}
+
+html.client-darkmode .mw-parser-output {
+	filter: invert(1) hue-rotate(180deg);
+	color: #fff;
+	background-color: rgba(30, 30, 30, 0.9);
+}
+
+html.client-darkmode .mw-parser-output img {
+	filter: none;
+}
+
+html.client-darkmode .mw-parser-output .filter {
+	filter: invert(1) hue-rotate(180deg);
+}
+
+.mw-parser-output::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: linear-gradient(90deg, transparent, #fff, transparent);
+}
+
+html.client-darkmode .mw-parser-output::after {
+	background: linear-gradient(90deg, transparent, #1e1e1e, transparent);
+}
+
+.home-card {
+	display: flex;
+	flex-direction: column;
+	background: linear-gradient(175deg, rgba(241, 245, 250, 1), rgba(255, 255, 255, 0.8) 40%);
+	box-shadow: 0 0 10px 1px rgba(226, 226, 226, 0.5);
+	border-radius: 0.5rem;
+	box-sizing: border-box;
+	padding: 1rem;
+	min-width: 0;
+	width: 100%;
+}
+
+html.client-darkmode .home-card {
+	box-shadow: 0 0 10px 1px rgba(30, 30, 30, 0.9);
+	background: linear-gradient(175deg, #292929, #353535 40%);
+}
+
+.mw-parser-output-content {
+	flex: auto;
+	min-width: 0;
+}
+
+.grid-2 {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: 1fr 1fr;
+}
+
+.mw-parser-output-list {
+	display: flex;
+	flex-direction: column;
+}
+
+.list-header-btn {
+	margin: 0.5rem 0 1rem;
+	width: 100%;
+	display: grid;
+	gap: 0.5rem;
+	grid-template-columns: 1fr 1fr;
+}
+
+.list.grid-2 {
+	display: none;
+}
+
+@media screen and (max-width: 1232px) {
+	.mw-parser-output {
+		margin: 1rem;
+	}
+}
+
+@media (min-width: 769px) and (max-width: 980px) {
+	.grid-2 {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: 1fr;
+	}
+
+	.content.grid-2 {
+		display: none;
+	}
+
+	.list.grid-2 {
+		display: grid;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.mw-parser-output {
+		flex-direction: column-reverse;
+		margin: 0;
+		border-radius: 0;
+		padding: 1rem;
+	}
+}
+
+@media screen and (min-width: 769px) {
+	.mw-parser-output-list {
+		max-width: 320px;
+		align-items: self-start;
+	}
+
+	.mw-parser-output-content {
+		margin-right: 1rem;
+	}
+}
+
+@media screen and (max-width: 580px) {
+	.grid-2 {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: 1fr;
+	}
+}

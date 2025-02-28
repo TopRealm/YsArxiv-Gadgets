@@ -1,0 +1,116 @@
+// header
+.list-header {
+	display: flex;
+	margin-bottom: 0.5rem;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.value {
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.list-header-logo {
+	text-align: center;
+	font-size: 0.8rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.list-header-logo-img {
+	width: 150px;
+}
+
+.list-header-logo div:first-child {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.list-header-info {
+	text-align: end;
+	width: max-content;
+	word-wrap: break-word;
+}
+
+.Search {
+	display: flex;
+	width: 100%;
+	margin: 0 0 0.5rem;
+}
+
+.search-input {
+	display: flex;
+	width: 100%;
+	flex-direction: row-reverse;
+	position: relative;
+}
+
+form[name='bodySearch0.048433246538'].search-input input {
+	border: 0;
+	width: 100%;
+	min-width: 0;
+	background-color: transparent !important;
+	outline: 0;
+	font-size: 1rem;
+	position: relative;
+	z-index: 1;
+}
+
+html.client-darkmode form[name='bodySearch0.048433246538'].search-input input {
+	color: #fff !important;
+}
+
+.search-input-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 2.3rem;
+	width: 2.3rem;
+	position: relative;
+	background-color: transparent;
+	border: 0;
+	z-index: 1;
+}
+
+.search-input-icon::after {
+	content: '';
+	position: absolute;
+	right: 4px;
+	height: 60%;
+	border-right: 1px solid #ccc;
+}
+
+.search-input-icon i {
+	width: 1.2rem;
+	height: 1.2rem;
+	background: url('https://youshou.wiki/load.php?modules=skins.citizen.icons.wmui&image=search&format=original&lang=zh-cn&skin=citizen&version=1sf1w')
+		no-repeat center center/ 100% 100%;
+}
+
+.search-input:hover .search-input-border,
+.search-input input:focus ~ .search-input-border {
+	border: 1px solid hsla(160, 100%, 37%, 1);
+}
+
+.search-input-border {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	border-radius: 2rem;
+	border: 1px solid #ccc;
+}
+
+@media screen and (max-width: 768px) {
+	.list-header {
+		flex: auto;
+		margin-bottom: 1rem;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.list-header-logo-img {
+		width: 120px !important;
+	}
+}
